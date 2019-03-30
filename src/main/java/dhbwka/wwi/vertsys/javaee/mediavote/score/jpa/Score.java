@@ -11,6 +11,7 @@ package dhbwka.wwi.vertsys.javaee.mediavote.score.jpa;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.common.jpa.User;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,18 +27,18 @@ import javax.validation.constraints.NotNull;
 public class Score implements Serializable {
 
     @Id
-    @ManyToOne
-    @NotNull(message = "Bewertungen müssen einem Nutzer zugeordnet sein.")
-    private User user;
+    //@ManyToOne
+    //@NotNull(message = "Bewertungen müssen einem Nutzer zugeordnet sein.")
+    private User operator;
     
     @Id
-    @ManyToOne
-    @NotNull(message = "Bewertungen müssen einer Episode zugeordnet sein.")
+    //@ManyToOne
+    //@NotNull(message = "Bewertungen müssen einer Episode zugeordnet sein.")
     private Episode episode;
 
     //Bewertung von 1 bis 5
-    @Column(nullable=false, precision=1)
-    private int value;
+    //@Column(nullable=false, precision=1)
+    private int rating;
     
     //Konstruktoren
 
@@ -45,19 +46,19 @@ public class Score implements Serializable {
     }
 
     public Score(User user, Episode episode, int value) {
-        this.user = user;
+        this.operator = user;
         this.episode = episode;
-        this.value = value;
+        this.rating = value;
     }
     
     //Getter und Setter
 
-    public User getUser() {
-        return user;
+    public User getOperator() {
+        return operator;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOperator(User operator) {
+        this.operator = operator;
     }
 
     public Episode getEpisode() {
@@ -68,14 +69,47 @@ public class Score implements Serializable {
         this.episode = episode;
     }
 
-    public int getValue() {
-        return value;
+    public int getRating() {
+        return rating;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
+    // Hasu und Equals
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Score other = (Score) obj;
+        if (this.rating != other.rating) {
+            return false;
+        }
+        if (!Objects.equals(this.operator, other.operator)) {
+            return false;
+        }
+        if (!Objects.equals(this.episode, other.episode)) {
+            return false;
+        }
+        return true;
+    }
+
+    
     
     
 }
