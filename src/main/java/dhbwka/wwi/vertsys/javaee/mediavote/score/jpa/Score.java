@@ -10,6 +10,7 @@
 package dhbwka.wwi.vertsys.javaee.mediavote.score.jpa;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
