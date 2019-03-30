@@ -43,6 +43,10 @@ public class Episode implements Serializable {
     private String description;
     private double avgRating;
     
+    public Episode(){
+        
+    }
+    
     public Episode(String entryOwner,String series, String season, String name, String description){
         this.entryOwner = entryOwner;
         this.series = series;
@@ -50,30 +54,72 @@ public class Episode implements Serializable {
         this.name = name;
         this.description = description;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Score> getScore() {
+        return score;
+    }
+
+    public void setScore(List<Score> score) {
+        this.score = score;
+    }
+
+    public String getEntryOwner() {
+        return entryOwner;
+    }
+
+    public void setEntryOwner(String entryOwner) {
+        this.entryOwner = entryOwner;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
+    }
+
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getAvgRating() {
+        return 3.0;
+    }
+
+    public void setAvgRating(double avgRating) {
+        this.avgRating = avgRating;
+    }
     
-    public double calculateAvg(){
-        double test = 3.0;
-        return test ;
-    }
-        public String getEntryOwner(){
-        return this.entryOwner; 
-    }
-        
-    public String getName(){
-        return this.name; 
-    }
-    
-    public String getSeason(){
-        return this.season; 
-    }
-        
-    public String getSeries(){
-        return this.series; 
-    }
-            
-    public String getDescription(){
-        return this.description; 
-    }
+
                 
 
 }
