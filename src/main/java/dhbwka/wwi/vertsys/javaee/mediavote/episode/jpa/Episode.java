@@ -36,9 +36,12 @@ public class Episode implements Serializable {
     @ManyToOne
     private User user;
     
+    @ManyToOne
+    private Series series;
+    
     private String name;
-    private String season;
-    private String series;
+    private int season;
+    private int number;
     private String description;
     private double avgRating;
     
@@ -46,11 +49,12 @@ public class Episode implements Serializable {
         
     }
     
-    public Episode(User user,String series, String season, String name, String description){
+    public Episode(User user,Series series, int season, String name, String description,int number){
         this.user = user;
         this.series = series;
         this.season = season;
         this.name = name;
+        this.number = number;
         this.description = description;
     }
 
@@ -86,19 +90,20 @@ public class Episode implements Serializable {
         this.name = name;
     }
 
-    public String getSeason() {
+    public int getSeason() {
         return season;
     }
 
-    public void setSeason(String season) {
+    public void setSeason(int season) {
         this.season = season;
     }
 
-    public String getSeries() {
+
+    public Series getSeries() {
         return series;
     }
 
-    public void setSeries(String series) {
+    public void setSeries(Series series) {
         this.series = series;
     }
 
@@ -118,7 +123,13 @@ public class Episode implements Serializable {
         this.avgRating = avgRating;
     }
     
+    public int getNumber() {
+        return number;
+    }
 
+    public void setNumber(int number) {
+        this.number = number;
+    }
                 
 
 }

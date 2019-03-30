@@ -3,6 +3,7 @@ package dhbwka.wwi.vertsys.javaee.mediavote.episode.ejb;
 import dhbwka.wwi.vertsys.javaee.mediavote.common.ejb.EntityBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.common.jpa.User;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
+import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Series;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 
@@ -14,13 +15,13 @@ public class EpisodeBean extends EntityBean<Episode, Long>{
         super(Episode.class);
     }
  
-    public void createNewEntry(User user,String series, String season, String name, String description){
-        Episode episode = new Episode(user,series,season,name,description);
+    public void createNewEntry(User user,Series series, int season, String name, String description,int number){
+        Episode episode = new Episode(user,series,season,name,description,number);
         em.persist(episode);
     }
     
-    public void updateEntry(User user,String series, String season, String name, String description){
-        Episode episode = new Episode(user,series,season,name,description);
+    public void updateEntry(User user,Series series, int season, String name, String description, int number){
+        Episode episode = new Episode(user,series,season,name,description,number);
         em.merge(episode);
     }
     
