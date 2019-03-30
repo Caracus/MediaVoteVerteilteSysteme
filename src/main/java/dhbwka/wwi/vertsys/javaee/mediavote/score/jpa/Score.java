@@ -28,7 +28,7 @@ public class Score implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @ManyToOne
     @NotNull(message = "Bewertungen müssen einem Nutzer zugeordnet sein.")
@@ -48,7 +48,6 @@ public class Score implements Serializable {
     }
 
     public Score(User user, Episode episode, int value) {
-        this.id = 0;
         this.operator = user;
         this.episode = episode;
         this.rating = value;
@@ -56,14 +55,14 @@ public class Score implements Serializable {
     
     //Getter und Setter
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
-    }        
-
+    }
+        
     public User getOperator() {
         return operator;
     }
