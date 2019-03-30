@@ -1,12 +1,13 @@
 package dhbwka.wwi.vertsys.javaee.mediavote.score.jpa;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class ScoreId implements Serializable {
-    private User operator;
-    private Episode episode;
+    private User operator = null;
+    private Episode episode = null;
 
     public ScoreId() {
     }

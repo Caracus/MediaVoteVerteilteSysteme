@@ -10,12 +10,13 @@
 package dhbwka.wwi.vertsys.javaee.mediavote.score.jpa;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
@@ -23,17 +24,18 @@ import javax.validation.constraints.NotNull;
  * Eine zu erledigende Aufgabe.
  */
 @Entity
-@IdClass(ScoreId.class)
 public class Score implements Serializable {
-
-    @Id
-    //@ManyToOne
-    //@NotNull(message = "Bewertungen müssen einem Nutzer zugeordnet sein.")
-    private User operator;
     
     @Id
-    //@ManyToOne
-    //@NotNull(message = "Bewertungen müssen einer Episode zugeordnet sein.")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @ManyToOne
+    @NotNull(message = "Bewertungen müssen einem Nutzer zugeordnet sein.")
+    private User operator;
+    
+    @ManyToOne
+    @NotNull(message = "Bewertungen müssen einer Episode zugeordnet sein.")
     private Episode episode;
 
     //Bewertung von 1 bis 5
@@ -46,12 +48,21 @@ public class Score implements Serializable {
     }
 
     public Score(User user, Episode episode, int value) {
+        this.id = 0;
         this.operator = user;
         this.episode = episode;
         this.rating = value;
     }
     
     //Getter und Setter
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }        
 
     public User getOperator() {
         return operator;

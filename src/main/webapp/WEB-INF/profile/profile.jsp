@@ -30,6 +30,10 @@
         <div class="menuitem">
             <a href="<c:url value="/app/tasks/list/"/>">Liste</a>
         </div>
+        
+        <div class="menuitem">
+            <a href="<c:url value="/app/profile/"/>">Mein Profil</a>
+        </div>
     </jsp:attribute>
 
     <jsp:attribute name="content">
@@ -41,12 +45,26 @@
                 <%-- Eingabefelder --%>
                 <label for="profile_firstname">Vorname</label>
                 <div class="side-by-side">
-                    <input type="text" name="profile_firstname" value="${profile_form.values["profile_firstname"][0]}">
+                    <input type="text" name="profile_firstname" value="${firstname}">
                 </div>
                 
                 <label for="profile_lastname">Nachname</label>
                 <div class="side-by-side">
-                    <input type="text" name="profile_lastname" value="${profile_form.values["profile_lastname"][0]}">
+                    <input type="text" name="profile_lastname" value="${lastname}">
+                </div>
+                
+                <label for="profile_password1">
+                    Passwort:
+                </label>
+                <div class="side-by-side">
+                    <input type="password" name="profile_password1" value="${profile_form.values["profile_password1"][0]}">
+                </div>
+
+                <label for="profile_password2">
+                    Passwort (wdh.):
+                </label>
+                <div class="side-by-side">
+                    <input type="password" name="profile_password2" value="${profile_form.values["profile_password2"][0]}">
                 </div>
 
                 <%-- Button zum Abschicken --%>
@@ -58,9 +76,9 @@
             </div>
 
             <%-- Fehlermeldungen --%>
-            <c:if test="${!empty task_form.errors}">
+            <c:if test="${!empty profile_form.errors}">
                 <ul class="errors">
-                    <c:forEach items="${task_form.errors}" var="error">
+                    <c:forEach items="${profile_form.errors}" var="error">
                         <li>${error}</li>
                     </c:forEach>
                 </ul>
