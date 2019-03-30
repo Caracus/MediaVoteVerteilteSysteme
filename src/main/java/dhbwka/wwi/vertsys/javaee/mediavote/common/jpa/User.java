@@ -63,7 +63,7 @@ public class User implements Serializable {
     private String firstName;
     
     //Nachname: Optional
-    @Column(name = "FIRSTNAME", length = 64)
+    @Column(name = "LASTNAME", length = 64)
     @Size(min = 0, max = 64, message = "Der Nachname darf maximal 64 Zeichen lang sein.")
     private String lastName;
 
