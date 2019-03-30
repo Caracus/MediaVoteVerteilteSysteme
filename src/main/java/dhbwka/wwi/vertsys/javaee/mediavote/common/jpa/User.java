@@ -56,6 +56,16 @@ public class User implements Serializable {
     @Column(name = "PASSWORD_HASH", length = 64)
     @NotNull(message = "Das Passwort darf nicht leer sein.")
     private String passwordHash;
+    
+    //Vorname: Optional
+    @Column(name = "FIRSTNAME", length = 64)
+    @Size(min = 0, max = 64, message = "Der Vorname darf maximal 64 Zeichen lang sein.")
+    private String firstName;
+    
+    //Nachname: Optional
+    @Column(name = "FIRSTNAME", length = 64)
+    @Size(min = 0, max = 64, message = "Der Nachname darf maximal 64 Zeichen lang sein.")
+    private String lastName;
 
     @ElementCollection
     @CollectionTable(
@@ -71,12 +81,22 @@ public class User implements Serializable {
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public User() {
     }
-
+    //Ursprünglicher Konstruktor
     public User(String username, String password) {
         this.username = username;
         this.password.password = password;
         this.passwordHash = this.hashPassword(password);
     }
+    //Konstruktor mit Vor- und Nachname
+    public User(String username, String password, String firstName, String lastName) {
+        this.username = username;
+        this.password.password = password;
+        this.passwordHash = this.hashPassword(password);
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    
+    
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Setter und Getter">
@@ -95,6 +115,24 @@ public class User implements Serializable {
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
+    
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Passwort setzen und prüfen">
