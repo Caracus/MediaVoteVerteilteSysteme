@@ -10,15 +10,10 @@ import javax.ejb.Stateless;
 @RolesAllowed("app-user")
 public class EpisodeBean extends EntityBean<Episode, Long>{
 
-     
        public EpisodeBean() {
         super(Episode.class);
     }
-  
-    public EpisodeBean(Class entityClass) {
-        super(entityClass);
-    }
-    
+ 
     public void createNewEntry(User user,String series, String season, String name, String description){
         Episode episode = new Episode(user,series,season,name,description);
         em.persist(episode);
@@ -28,4 +23,5 @@ public class EpisodeBean extends EntityBean<Episode, Long>{
         Episode episode = new Episode(user,series,season,name,description);
         em.merge(episode);
     }
+    
 }

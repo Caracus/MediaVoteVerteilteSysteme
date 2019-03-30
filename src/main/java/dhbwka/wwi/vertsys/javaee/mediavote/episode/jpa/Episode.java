@@ -36,7 +36,6 @@ public class Episode implements Serializable {
     @ManyToOne
     private User user;
     
-    private String entryOwner;
     private String name;
     private String season;
     private String series;
@@ -47,8 +46,8 @@ public class Episode implements Serializable {
         
     }
     
-    public Episode(String entryOwner,String series, String season, String name, String description){
-        this.entryOwner = entryOwner;
+    public Episode(User user,String series, String season, String name, String description){
+        this.user = user;
         this.series = series;
         this.season = season;
         this.name = name;
@@ -71,12 +70,12 @@ public class Episode implements Serializable {
         this.score = score;
     }
 
-    public String getEntryOwner() {
-        return entryOwner;
+    public User getUser() {
+        return user;
     }
 
-    public void setEntryOwner(String entryOwner) {
-        this.entryOwner = entryOwner;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getName() {
