@@ -53,7 +53,7 @@
                 <%-- Eingabefelder --%>
                 <label for="episode_user">Ersteller:</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_user" value="" readonly="readonly">
+                    <input type="text" name="episode_user" value="${user.username}" readonly="readonly">
                 </div>
                 
                 <label for="episode_series">Serienname:</label>

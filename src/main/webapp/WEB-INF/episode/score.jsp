@@ -62,21 +62,8 @@
                 <label for="episode_score">Deine Bewertung:</label>
                 <div class="side-by-side">
                     <input type="number" name="episode_score" value="${score.rating}" >
-                    <input type="text" name="episode_user" value="" readonly="readonly">
                 </div>
-                
-                <label for="episode_name">Episodenname</label>
-                <div class="side-by-side">
-                    <input type="text" name="episode_name" value="" readonly="readonly" >
-                </div>
-                
-                <label for="episode_score">Bewertung:</label>
-                <div class="side-by-side">
-                    <input type="number" name="episode_score" value="{score.rating}" >
-                </div>
-                
-               
-                
+                    
                 <div class="side-by-side">
                     <button class="icon-pencil" type="submit" name="action" value="save">
                         Sichern

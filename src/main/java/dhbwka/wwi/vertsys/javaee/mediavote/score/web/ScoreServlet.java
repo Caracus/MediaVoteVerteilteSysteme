@@ -75,13 +75,6 @@ public class ScoreServlet extends HttpServlet {
             throws ServletException, IOException {
         
         User user = this.userBean.getCurrentUser();
-        /*
-        try {
-               
-        } catch(Exception e) {
-            
-        }*/
-
         int rating = Integer.parseInt(request.getParameter("episode_score"));
         Episode episode = getRequestedEpisode(request);    
         
@@ -97,14 +90,12 @@ public class ScoreServlet extends HttpServlet {
         else {
             Score score = new Score(user, episode, rating);
             scoreBean.saveNew(score);
+            
+            episode.addScore(score);
         }
         
         
-
-        
-   
-   
-        // Keine Fehler: Startseite aufrufen
+     // Keine Fehler: Startseite aufrufen
         response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));   
         
     }

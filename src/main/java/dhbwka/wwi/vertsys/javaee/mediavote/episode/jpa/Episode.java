@@ -84,6 +84,12 @@ public class Episode implements Serializable {
     public void setScore(List<Score> score) {
         this.score = score;
     }
+    
+    public void addScore(Score score) {
+        this.score.getClass();
+        score.getClass();
+        this.score.add(score);
+    }
 
     public User getUser() {
         return user;
@@ -110,13 +116,33 @@ public class Episode implements Serializable {
     }
 
     public double getAvgRating() {
-        return 3.0;
+        return avgRating;
     }
 
     public void setAvgRating(double avgRating) {
         this.avgRating = avgRating;
     }
     
+    public double calculateAvgRating() {
+        
+        double sum = 0;
+        int i = 0;
+        for(Score s : this.score) {
+            sum = sum + s.getRating();
+            i++;
+        }
+        
+        if(i == 0) {
+            this.avgRating = 0.0;
+            return 0.0;
+        }
+        double avg = sum / i; 
+
+       // double avg = 3.0;
+        this.avgRating = avg;
+        return avg;
+    }
+
     public int getNumber() {
         return number;
     }

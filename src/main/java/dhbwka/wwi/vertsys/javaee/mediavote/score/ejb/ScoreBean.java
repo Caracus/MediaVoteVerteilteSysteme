@@ -33,5 +33,11 @@ public class ScoreBean extends EntityBean<Score, Long> {
                  .getResultList();
     }
     
+    public List<Score> findByEpisode(Long episodeId) {
+        return em.createQuery("SELECT s FROM Score s WHERE s.episode.id = :episodeId")
+                 .setParameter("episodeId", episodeId)
+                 .getResultList();
+    }
+    
 }
 

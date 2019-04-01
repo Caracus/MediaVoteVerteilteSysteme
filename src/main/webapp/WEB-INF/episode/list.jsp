@@ -57,7 +57,8 @@
                             <th>Staffel</th>
                             <th>Episodenname</th>
                             <th>Episodennummer</th>
-                            <th>Bewertung</th>
+                            <th>Deine Bewertung</th>
+                            <th>Durch. Bewertung</th>
                         </tr>
                     </thead>
                     <c:forEach items="${episodes}" var="episode">
@@ -81,6 +82,9 @@
                                  <a href="<c:url value="/app/score/${episode.id}"/>">
                                 <c:out value="ScoreValue"/>
                                  </a>
+                            </td>
+                            <td>
+                                <c:out value="${episode.avgRating}"/>
                             </td>
                                                           
                                

@@ -49,6 +49,9 @@ public class EpisodeListServlet extends HttpServlet {
                
         
         List<Episode> episodes = this.episodeBean.findAll();
+        for(Episode ep : episodes) {
+            ep.getAvgRating();
+        }
         request.setAttribute("episodes", episodes);
               
                 

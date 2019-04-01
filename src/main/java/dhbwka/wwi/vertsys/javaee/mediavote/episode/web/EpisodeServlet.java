@@ -46,6 +46,9 @@ public class EpisodeServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         
+        User user = this.userBean.getCurrentUser();
+        request.setAttribute("user", user);
+        
         // Anfrage an dazugerhörige JSP weiterleiten
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/episode/episode.jsp");
         dispatcher.forward(request, response);
