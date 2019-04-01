@@ -51,6 +51,17 @@
                 <%-- Eingabefelder --%>
                 <label for="episode_user">Derzeitiger Nutzer</label>
                 <div class="side-by-side">
+                    <input type="text" name="episode_user" value="${user.username}" readonly="readonly">
+                </div>
+                
+                <label for="episode_name">Episodenname</label>
+                <div class="side-by-side">
+                    <input type="text" name="episode_name" value="${episode.name}" readonly="readonly" >
+                </div>
+                
+                <label for="episode_score">Deine Bewertung:</label>
+                <div class="side-by-side">
+                    <input type="number" name="episode_score" value="${score.rating}" >
                     <input type="text" name="episode_user" value="" readonly="readonly">
                 </div>
                 
