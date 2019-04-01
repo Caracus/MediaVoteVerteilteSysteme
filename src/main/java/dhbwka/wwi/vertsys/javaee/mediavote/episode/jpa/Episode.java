@@ -36,11 +36,9 @@ public class Episode implements Serializable {
     @ManyToOne
     private User user;
     
-    @ManyToOne
-    private Series series;
-    
     private String name;
-    private int season;
+    private String series;
+    private String season;
     private int number;
     private String description;
     private double avgRating;
@@ -49,14 +47,27 @@ public class Episode implements Serializable {
         
     }
     
-    public Episode(User user,Series series, int season, String name, String description,int number){
+     public Episode(User user, String name, String series, String season, int number, String description) {
         this.user = user;
+        this.name = name;
         this.series = series;
         this.season = season;
-        this.name = name;
         this.number = number;
         this.description = description;
     }
+
+    public Episode(Long id, User user, String name, String series, String season, int number, String description, double avgRating) {
+        this.id = id;
+        this.user = user;
+        this.name = name;
+        this.series = series;
+        this.season = season;
+        this.number = number;
+        this.description = description;
+        this.avgRating = avgRating;
+    }
+    
+   
 
     public Long getId() {
         return id;
@@ -90,23 +101,6 @@ public class Episode implements Serializable {
         this.name = name;
     }
 
-    public int getSeason() {
-        return season;
-    }
-
-    public void setSeason(int season) {
-        this.season = season;
-    }
-
-
-    public Series getSeries() {
-        return series;
-    }
-
-    public void setSeries(Series series) {
-        this.series = series;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -130,6 +124,21 @@ public class Episode implements Serializable {
     public void setNumber(int number) {
         this.number = number;
     }
-                
+
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
+    }            
 
 }

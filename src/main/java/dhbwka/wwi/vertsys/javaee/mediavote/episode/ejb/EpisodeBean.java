@@ -15,14 +15,5 @@ public class EpisodeBean extends EntityBean<Episode, Long>{
         super(Episode.class);
     }
  
-    public void createNewEntry(User user,Series series, int season, String name, String description,int number){
-        Episode episode = new Episode(user,series,season,name,description,number);
-        em.persist(episode);
-    }
-    
-    public void updateEntry(User user,Series series, int season, String name, String description, int number){
-        Episode episode = new Episode(user,series,season,name,description,number);
-        em.merge(episode);
-    }
-    
+   
 }
