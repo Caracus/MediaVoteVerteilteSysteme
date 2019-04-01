@@ -39,7 +39,6 @@ public class Series implements Serializable {
     @Size(min = 3, max = 30, message = "Der Name muss zwischen drei und 30 Zeichen lang sein.")
     private String name;
 
-    @OneToMany(mappedBy = "series", fetch = FetchType.LAZY)
     List<Episode> episodes = new ArrayList<>();
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
