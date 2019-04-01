@@ -50,27 +50,27 @@
                 
                 <label for="episode_series">Serienname:</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_series" value="" readonly="readonly">
+                    <input type="text" name="episode_series" value="" >
                 </div>
                 
                 <label for="episode_season">Staffel:</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_series" value="" readonly="readonly">
+                    <input type="text" name="episode_season" value="" >
                 </div>
                 
                 <label for="episode_name">Episodenname:</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_name" value="" readonly="readonly">
+                    <input type="text" name="episode_name" value="" >
                 </div>
                 
                 <label for="episode_number">Episodennummer:</label>
                 <div class="side-by-side">
-                    <input type="number" name="episode_number" value="" readonly="readonly">
+                    <input type="number" name="episode_number" value="" >
                 </div>
                 
                 <label for="episode_description">Beschreibung:</label>
                 <div class="side-by-side">
-                    <textarea name="episode_description" value="" readonly="readonly"></textarea>
+                    <textarea name="episode_description" value="" ></textarea>
                 </div>
                 
                   <div class="side-by-side">
