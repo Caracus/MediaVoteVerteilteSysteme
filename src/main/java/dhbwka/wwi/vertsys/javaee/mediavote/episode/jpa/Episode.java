@@ -30,7 +30,7 @@ public class Episode implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
  
-    @OneToMany
+    @OneToMany(mappedBy="episode")
     private List<Score> score = new ArrayList<>();
 
     @ManyToOne

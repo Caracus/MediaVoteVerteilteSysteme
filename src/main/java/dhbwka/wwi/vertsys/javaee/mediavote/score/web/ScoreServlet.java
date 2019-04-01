@@ -7,17 +7,15 @@
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
-package dhbwka.wwi.vertsys.javaee.mediavote.episode.web;
+package dhbwka.wwi.vertsys.javaee.mediavote.score.web;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.common.ejb.UserBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.common.jpa.User;
-import dhbwka.wwi.vertsys.javaee.mediavote.common.web.WebUtils;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.ejb.EpisodeBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
-import dhbwka.wwi.vertsys.javaee.mediavote.tasks.jpa.Task;
+import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
 import java.io.IOException;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,13 +23,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet für die tabellarische Auflisten der Aufgaben.
+ * Seite zum Anlegen oder Bearbeiten einer Aufgabe.
  */
-@WebServlet(urlPatterns = {"/app/episode/list/"})
-public class EpisodeListServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/app/score/*")
+public class ScoreServlet extends HttpServlet {
 
     @EJB
     private ScoreBean scoreBean;
@@ -43,25 +40,35 @@ public class EpisodeListServlet extends HttpServlet {
     private UserBean userBean;
     
 
-   @Override
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               
         
-        List<Episode> episodes = this.episodeBean.findAll();
-        request.setAttribute("episodes", episodes);
+        User user = this.userBean.getCurrentUser();
+        
+        Episode episode = this.episodeBean.findById(51L);
+        
+        //Score von Nutzer vorhanden -> laden
+        
+        Score score = new Score(user, episode, 0);
+        
+        request.setAttribute("score", score);
               
                 
         // Anfrage an dazugerhörige JSP weiterleiten
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/episode/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/score/score.jsp");
         dispatcher.forward(request, response);
-        
-   
-        
-        
-
-
-
     }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+       
+
+      
+        
+    }
+
 
 }

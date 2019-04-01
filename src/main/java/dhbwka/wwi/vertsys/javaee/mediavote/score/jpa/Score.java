@@ -52,6 +52,13 @@ public class Score implements Serializable {
         this.episode = episode;
         this.rating = value;
     }
+
+    public Score(Long id, User operator, Episode episode, int rating) {
+        this.id = id;
+        this.operator = operator;
+        this.episode = episode;
+        this.rating = rating;
+    }
     
     //Getter und Setter
 
