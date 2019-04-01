@@ -78,7 +78,7 @@
                                 <c:out value="${episode.number}"/>
                             </td>
                             <td>
-                                 <a href="<c:url value="/app/episode/${episode.id}/"/>">
+                                 <a href="<c:url value="/app/score/${episode.id}"/>">
                                 <c:out value="ScoreValue"/>
                                  </a>
                             </td>
