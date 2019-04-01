@@ -1,5 +1,3 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@taglib tagdir="/WEB-INF/tags/templates" prefix="template"%>
@@ -23,7 +21,7 @@
     </jsp:attribute>
 
     <jsp:attribute name="menu">
-          <div class="menuitem">
+         <div class="menuitem">
             <a href="<c:url value="/app/dashboard/"/>">Dashboard</a>
         </div>
 
@@ -51,41 +49,28 @@
                 <input type="hidden" name="csrf_token" value="${csrf_token}">
 
                 <%-- Eingabefelder --%>
-                <label for="episode_user">Ersteller:</label>
+                <label for="episode_user">Derzeitiger Nutzer</label>
                 <div class="side-by-side">
                     <input type="text" name="episode_user" value="" readonly="readonly">
                 </div>
                 
-                <label for="episode_series">Serienname:</label>
+                <label for="episode_name">Episodenname</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_series" value="" >
+                    <input type="text" name="episode_name" value="" readonly="readonly" >
                 </div>
                 
-                <label for="episode_season">Staffel:</label>
+                <label for="episode_score">Bewertung:</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_season" value="" >
+                    <input type="number" name="episode_score" value="" >
                 </div>
                 
-                <label for="episode_name">Episodenname:</label>
-                <div class="side-by-side">
-                    <input type="text" name="episode_name" value="" >
-                </div>
+               
                 
-                <label for="episode_number">Episodennummer:</label>
                 <div class="side-by-side">
-                    <input type="number" name="episode_number" value="" >
-                </div>
-                
-                <label for="episode_description">Beschreibung:</label>
-                <div class="side-by-side">
-                    <textarea name="episode_description" value="" ></textarea>
-                </div>
-                
-                  <div class="side-by-side">
                     <button class="icon-pencil" type="submit" name="action" value="save">
                         Sichern
                     </button>
-                  </div>
+                </div>
         
             </div>
         </form>
