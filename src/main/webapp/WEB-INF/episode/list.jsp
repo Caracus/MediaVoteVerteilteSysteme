@@ -43,7 +43,7 @@
         <c:choose>
             <c:when test="${empty episodes}">
                 <p>
-                    Es wurden keine Aufgaben gefunden. 🐈
+                    Es wurden keine Episoden gefunden. 🐈
                 </p>
             </c:when>
             <c:otherwise>
@@ -66,7 +66,7 @@
                                 <c:out value="${episode.user.firstName}"/>
                             </td>
                             <td>
-                                <c:out value="${episode.series}"/>
+                                <c:out value="${episode.name}"/>
                             </td>
                             <td>
                                 <c:out value="${episode.season}"/>
