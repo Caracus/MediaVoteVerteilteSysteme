@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,8 +44,7 @@ public class Series implements Serializable {
     public Series() {
     }
 
-    public Series(long id, String name) {
-        this.id = id;
+    public Series(String name) {
         this.name = name;
     }
 
