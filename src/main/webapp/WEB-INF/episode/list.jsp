@@ -26,7 +26,13 @@
             <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
         </div>
         
+         <div class="menuitem">
+            <a href="<c:url value="/app/episode/"/>">Episode</a>
+        </div>
         
+        <div class="menuitem">
+            <a href="<c:url value="/app/tasks/episode/list"/>">Episode/list</a>
+        </div>
         
     </jsp:attribute>
 
