@@ -11,6 +11,7 @@ package dhbwka.wwi.vertsys.javaee.mediavote.score.ejb;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.common.ejb.EntityBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
+import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 
@@ -23,6 +24,13 @@ public class ScoreBean extends EntityBean<Score, Long> {
 
     public ScoreBean() {
         super(Score.class);
+    }
+    
+    public List<Score> findByUserAndEpisode(String username, Long episodeId) {
+        return em.createQuery("SELECT s FROM Score s WHERE s.operator.username = :username AND s.episode.id = :episodeId")
+                 .setParameter("username", username)
+                 .setParameter("episodeId", episodeId)
+                 .getResultList();
     }
     
 }

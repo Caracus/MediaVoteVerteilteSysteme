@@ -16,6 +16,7 @@ import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,13 +51,18 @@ public class ScoreServlet extends HttpServlet {
         
         //Score von Nutzer vorhanden -> laden
         
-        Score score = new Score(user, episode, 0);
+        List<Score> scores = scoreBean.findByUserAndEpisode(user.getUsername(), episode.getId());
         
-        request.setAttribute("score", score);
-              
-                
+        //Score score = new Score(user, episode, 0);
+        
+        if (!scores.isEmpty()) {
+            //Bewertung abgegeben, muss ein Element enhalten
+            Score score = scores.get(0);
+            request.setAttribute("score", score);
+        }
+  
         // Anfrage an dazugerhörige JSP weiterleiten
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/score/score.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/episode/score.jsp");
         dispatcher.forward(request, response);
     }
 

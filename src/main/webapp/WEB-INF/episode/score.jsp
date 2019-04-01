@@ -61,7 +61,7 @@
                 
                 <label for="episode_score">Bewertung:</label>
                 <div class="side-by-side">
-                    <input type="number" name="episode_score" value="" >
+                    <input type="number" name="episode_score" value="{score.rating}" >
                 </div>
                 
                
