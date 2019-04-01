@@ -31,7 +31,7 @@
         </div>
         
         <div class="menuitem">
-            <a href="<c:url value="/app/episode/list"/>">Episode/list</a>
+            <a href="<c:url value="/app/episode/list/"/>">Episode/list</a>
         </div>
         
     </jsp:attribute>
@@ -57,25 +57,33 @@
                             <th>Staffel</th>
                             <th>Episodenname</th>
                             <th>Episodennummer</th>
+                            <th>Bewertung</th>
                         </tr>
                     </thead>
                     <c:forEach items="${episodes}" var="episode">
                         <tr>
                             <td>
-                                <c:out value=""/>
+                                <c:out value="${episode.user.firstName}"/>
                             </td>
                             <td>
-                                <c:out value=""/>
+                                <c:out value="${episode.series}"/>
                             </td>
                             <td>
-                                <c:out value=""/>
+                                <c:out value="${episode.season}"/>
                             </td>
                             <td>
-                                <c:out value=""/>
+                                <c:out value="${episode.name}"/>
                             </td>
                             <td>
-                                <c:out value=""/>
+                                <c:out value="${episode.number}"/>
                             </td>
+                            <td>
+                                 <a href="<c:url value="/app/episode/${episode.id}/"/>">
+                                <c:out value="ScoreValue"/>
+                                 </a>
+                            </td>
+                                                          
+                               
                         </tr>
                     </c:forEach>
                 </table>
