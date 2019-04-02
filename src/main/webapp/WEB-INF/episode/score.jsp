@@ -49,7 +49,7 @@
                 <input type="hidden" name="csrf_token" value="${csrf_token}">
 
                 <%-- Eingabefelder --%>
-                <label for="episode_user">Derzeitiger Nutzer</label>
+                <label for="episode_user">Angemeldet als</label>
                 <div class="side-by-side">
                     <input type="text" name="episode_user" value="${user.username}" readonly="readonly">
                 </div>
@@ -59,9 +59,9 @@
                     <input type="text" name="episode_name" value="${episode.name}" readonly="readonly" >
                 </div>
                 
-                <label for="episode_score">Deine Bewertung:</label>
+                <label for="episode_score">Deine Bewertung von 1 bis 10:</label>
                 <div class="side-by-side">
-                    <input type="number" name="episode_score" value="${score.rating}" >
+                    <input type="number" name="episode_score" min="1" max="10" value="${score.rating}" >
                 </div>
                     
                 <div class="side-by-side">

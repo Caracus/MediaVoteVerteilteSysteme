@@ -47,13 +47,18 @@ public class EpisodeListServlet extends HttpServlet {
         
         List<Episode> episodes = this.episodeBean.findAll();
         for(Episode ep : episodes) {
-            double avgScore;
             List<Score> scores = scoreBean.findByEpisode(ep.getId());
+            int i = 0;
+            double scoreSum = 0;
             for(Score score : scores) {
-                avgScore = 0;
+                scoreSum = scoreSum + score.getRating();
+                i++;
             }
-              
-            ep.getAvgRating();
+            double avgScore = 0.0;
+            if(i > 0) {
+                avgScore = scoreSum / i;
+            }
+            ep.setAvgRating(avgScore);
         }
         request.setAttribute("episodes", episodes);
               
