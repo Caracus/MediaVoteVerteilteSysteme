@@ -6,7 +6,6 @@
 
 <template:base>
     <jsp:attribute name="title">
-        Liste der Aufgaben
     </jsp:attribute>
 
     <jsp:attribute name="head">
@@ -52,19 +51,19 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Ersteller</th>
+                            <th>Platzierung:</th>                              
                             <th>Serienname</th>
                             <th>Staffel</th>
                             <th>Episodenname</th>
                             <th>Episodennummer</th>
-                            <th>Deine Bewertung</th>
                             <th>Durch. Bewertung</th>
                         </tr>
                     </thead>
-                    <c:forEach items="${episodes}" var="episode">
+                    for (var i = 0; i < 10; i++){
+                        var episode = ${episodes}.get(i);
                         <tr>
                             <td>
-                                <c:out value="${episode.user.firstName}"/>
+                                <c:out value="+ i +"/>
                             </td>
                             <td>
                                 <c:out value="${episode.name}"/>
@@ -79,17 +78,10 @@
                                 <c:out value="${episode.number}"/>
                             </td>
                             <td>
-                                 <a href="<c:url value="/app/score/${episode.id}"/>">
-                                <c:out value="ScoreValue"/>
-                                 </a>
-                            </td>
-                            <td>
                                 <c:out value="${episode.avgRating}"/>
                             </td>
-                                                          
-                               
                         </tr>
-                    </c:forEach>
+                        }
                 </table>
             </c:otherwise>
         </c:choose>

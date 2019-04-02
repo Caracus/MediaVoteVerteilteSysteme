@@ -36,11 +36,11 @@
         </div>
         
          <div class="menuitem">
-            <a href="<c:url value="/app/episode/"/>">Episode</a>
+            <a href="<c:url value="/app/episode/"/>">Neue Episode</a>
         </div>
         
         <div class="menuitem">
-            <a href="<c:url value="/app/episode/list/"/>">Episode/list</a>
+            <a href="<c:url value="/app/episode/list/"/>">Episodenliste</a>
         </div>
     </jsp:attribute>
 
