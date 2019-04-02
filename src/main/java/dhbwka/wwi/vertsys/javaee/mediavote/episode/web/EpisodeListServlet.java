@@ -10,12 +10,10 @@
 package dhbwka.wwi.vertsys.javaee.mediavote.episode.web;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.common.ejb.UserBean;
-import dhbwka.wwi.vertsys.javaee.mediavote.common.jpa.User;
-import dhbwka.wwi.vertsys.javaee.mediavote.common.web.WebUtils;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.ejb.EpisodeBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
-import dhbwka.wwi.vertsys.javaee.mediavote.tasks.jpa.Task;
+import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,7 +23,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Servlet für die tabellarische Auflisten der Aufgaben.
@@ -50,6 +47,12 @@ public class EpisodeListServlet extends HttpServlet {
         
         List<Episode> episodes = this.episodeBean.findAll();
         for(Episode ep : episodes) {
+            double avgScore;
+            List<Score> scores = scoreBean.findByEpisode(ep.getId());
+            for(Score score : scores) {
+                avgScore = 0;
+            }
+              
             ep.getAvgRating();
         }
         request.setAttribute("episodes", episodes);

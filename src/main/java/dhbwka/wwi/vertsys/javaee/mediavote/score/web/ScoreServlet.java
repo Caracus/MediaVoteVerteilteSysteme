@@ -96,16 +96,16 @@ public class ScoreServlet extends HttpServlet {
            Score score = scores.get(0);
            score.setRating(rating);
            scoreBean.update(score); 
-           episode.calculateAvgRating();
-           episodeBean.update(episode);
+           //episode.calculateAvgRating();
+           //episodeBean.update(episode);
         }
         else {
             Score score = new Score(user, episode, rating);
             scoreBean.saveNew(score);
             
             //episode.addScore(score);
-            episode.calculateAvgRating();
-            episodeBean.update(episode);
+            //episode.calculateAvgRating();
+            //episodeBean.update(episode);
         }
         
         
