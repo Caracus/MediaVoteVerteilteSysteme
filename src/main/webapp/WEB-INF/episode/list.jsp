@@ -6,24 +6,17 @@
 
 <template:base>
     <jsp:attribute name="title">
-        Liste der Aufgaben
+        Liste der Episoden
     </jsp:attribute>
 
     <jsp:attribute name="head">
         <link rel="stylesheet" href="<c:url value="/css/task_list.css"/>" />
     </jsp:attribute>
 
-    <jsp:attribute name="menu">
+    <jsp:attribute name="menu">  
+        
         <div class="menuitem">
-            <a href="<c:url value="/app/dashboard/"/>">Dashboard</a>
-        </div>
-
-        <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Aufgabe anlegen</a>
-        </div>
-
-        <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
+            <a href="<c:url value="/app/start/"/>">Start</a>
         </div>
         
          <div class="menuitem">
@@ -32,8 +25,7 @@
         
         <div class="menuitem">
             <a href="<c:url value="/app/episode/list/"/>">Episodenliste</a>
-        </div>
-        
+        </div>   
     </jsp:attribute>
 
     <jsp:attribute name="content">
@@ -43,7 +35,7 @@
         <c:choose>
             <c:when test="${empty episodes}">
                 <p>
-                    Es wurden keine Episoden gefunden. 🐈
+                    Es wurden keine Episoden gefunden. 😪
                 </p>
             </c:when>
             <c:otherwise>
@@ -80,7 +72,7 @@
                             </td>
                             <td>
                                  <a href="<c:url value="/app/score/${episode.id}"/>">
-                                <c:out value="ScoreValue"/>
+                                <c:out value="Jetzt bewerten"/>
                                  </a>
                             </td>
                             <td>

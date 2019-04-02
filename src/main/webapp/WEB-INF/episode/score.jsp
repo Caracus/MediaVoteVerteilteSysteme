@@ -5,32 +5,18 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <template:base>
-    <jsp:attribute name="title">
-        <c:choose>
-            <c:when test="${edit}">
-                Aufgabe bearbeiten
-            </c:when>
-            <c:otherwise>
-                Aufgabe anlegen
-            </c:otherwise>
-        </c:choose>
+    <jsp:attribute name="title"> 
+                Bewertung abgeben
     </jsp:attribute>
 
     <jsp:attribute name="head">
         <link rel="stylesheet" href="<c:url value="/css/task_edit.css"/>" />
     </jsp:attribute>
 
-    <jsp:attribute name="menu">
-         <div class="menuitem">
-            <a href="<c:url value="/app/dashboard/"/>">Dashboard</a>
-        </div>
-
+    <jsp:attribute name="menu">    
+        
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Aufgabe anlegen</a>
-        </div>
-
-        <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
+            <a href="<c:url value="/app/start/"/>">Start</a>
         </div>
         
          <div class="menuitem">

@@ -30,20 +30,15 @@ public class EpisodeResource {
 
     @EJB
     private EpisodeBean episodeBean;
-/*
-    @GET
-    public List<Episode> findEpisodes() {
-        return this.episodeBean.findAll();
-    }*/
-    /*
-    @GET
-    public String findEpisodes() {
-        return "{\"Test\":1}";
-    }*/
 
     @GET
     public String findEpisodes() {
         List<Episode> episodes = this.episodeBean.findAll();
+        //Entferne Userdaten aus zu übergebendem Datensatz
+        episodes.forEach((ep) -> {
+            ep.setUser(null);
+        });
+                 
         String json = gson.toJson(episodes);
         return json;
     } 

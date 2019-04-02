@@ -22,20 +22,11 @@
         <link rel="stylesheet" href="<c:url value="/css/task_edit.css"/>" />
     </jsp:attribute>
 
-    <jsp:attribute name="menu">
-          <div class="menuitem">
-            <a href="<c:url value="/app/dashboard/"/>">Dashboard</a>
-        </div>
-
+    <jsp:attribute name="menu">     
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Aufgabe anlegen</a>
+            <a href="<c:url value="/app/start/"/>">Start</a>
         </div>
-
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
-        </div>
-        
-         <div class="menuitem">
             <a href="<c:url value="/app/episode/"/>">Neue Episode</a>
         </div>
         

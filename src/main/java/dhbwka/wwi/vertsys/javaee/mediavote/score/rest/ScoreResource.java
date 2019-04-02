@@ -9,6 +9,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.mediavote.score.rest;
 
+import com.google.gson.Gson;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
 import java.util.List;
@@ -24,13 +25,17 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ScoreResource {
+    
+    Gson gson = new Gson();
 
     @EJB
     ScoreBean scoreBean;
 
     @GET
-    public List<Score> findEpisodes() {
-        return this.scoreBean.findAll();
+    public String findEpisodes() {
+        List<Score> scores = this.scoreBean.findAll();
+        String json = gson.toJson(scores);
+        return json;
     }
 
    
