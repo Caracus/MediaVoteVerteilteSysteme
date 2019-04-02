@@ -133,8 +133,8 @@ public class Episode implements Serializable {
         }
         
         if(i == 0) {
-            this.avgRating = 0.0;
-            return 0.0;
+            this.avgRating = 100.0;
+            return 100.0;
         }
         double avg = sum / i; 
 
