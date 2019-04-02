@@ -126,6 +126,11 @@ public class Score implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Score{" + "id=" + id + ", operator=" + operator + ", episode=" + episode + ", rating=" + rating + '}';
+    }
+
     
     
     

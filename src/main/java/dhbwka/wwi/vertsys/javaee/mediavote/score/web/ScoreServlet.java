@@ -18,6 +18,8 @@ import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,6 +34,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(urlPatterns = "/app/score/*")
 public class ScoreServlet extends HttpServlet {
+    
+    private static final Logger logger = Logger.getLogger(ScoreServlet.class.getName());
 
     @EJB
     private ScoreBean scoreBean;
@@ -81,17 +85,27 @@ public class ScoreServlet extends HttpServlet {
         //Episode episode = new Episode(user, name, series, season, number, description);
         
         List<Score> scores = scoreBean.findByUserAndEpisode(user.getUsername(), episode.getId());
+        logger.log(Level.INFO, "Alle Scores zur Episode");
+        for(Score score : scores) {
+            logger.log(Level.INFO, score.toString());
+        }
+        
+        
         
         if (!scores.isEmpty()) {
            Score score = scores.get(0);
            score.setRating(rating);
            scoreBean.update(score); 
+           //episode.calculateAvgRating();
+           //episodeBean.update(episode);
         }
         else {
             Score score = new Score(user, episode, rating);
             scoreBean.saveNew(score);
             
-            episode.addScore(score);
+            //episode.addScore(score);
+            //episode.calculateAvgRating();
+            //episodeBean.update(episode);
         }
         
         
