@@ -10,6 +10,7 @@
 package dhbwka.wwi.vertsys.javaee.mediavote.webservice;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.rest.EpisodeResource;
+import dhbwka.wwi.vertsys.javaee.mediavote.score.rest.ScoreResource;
 import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.core.Application;
@@ -24,6 +25,7 @@ public class RestConfiguration extends Application{
         Set<Class<?>> resources = new HashSet<>();
 
         resources.add(EpisodeResource.class);
+        resources.add(ScoreResource.class);
 
         return resources;
     }

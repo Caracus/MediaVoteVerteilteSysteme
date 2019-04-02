@@ -9,6 +9,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.mediavote.episode.rest;
 
+import com.google.gson.Gson;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.ejb.EpisodeBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import java.util.List;
@@ -24,14 +25,27 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EpisodeResource {
+    
+    Gson gson = new Gson();
 
     @EJB
     private EpisodeBean episodeBean;
-
+/*
     @GET
     public List<Episode> findEpisodes() {
         return this.episodeBean.findAll();
-    }
+    }*/
+    /*
+    @GET
+    public String findEpisodes() {
+        return "{\"Test\":1}";
+    }*/
 
+    @GET
+    public String findEpisodes() {
+        List<Episode> episodes = this.episodeBean.findAll();
+        String json = gson.toJson(episodes);
+        return json;
+    } 
    
 }
