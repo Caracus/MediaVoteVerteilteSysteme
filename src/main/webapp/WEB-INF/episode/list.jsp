@@ -40,7 +40,7 @@
              <div id="container">
              <div class="buttonInside">
              <input type="text" name="search_text" value="${param.search_text}" id="searchInput" placeholder="Serienname">
-             <button class="icon-search" type="submit" id="searchButton">Suchen</button>
+             <button class="icon-search" type="submit" id="searchButton"></button>
             </div>
             </div>
         </form>
