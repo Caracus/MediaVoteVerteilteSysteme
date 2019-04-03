@@ -51,8 +51,19 @@ public class EpisodeListServlet extends HttpServlet {
             throws ServletException, IOException {
         
         User user = userBean.getCurrentUser();
+        
+        // Suchparameter aus der URL auslesen
+        String searchText = request.getParameter("search_text");
                  
-        List<Episode> episodes = this.episodeBean.findAll();
+        List<Episode> episodes;
+        
+        if(searchText == null || searchText.isEmpty()) {
+            episodes = this.episodeBean.findAll();
+        } else {
+            episodes = this.episodeBean.findBySeries(searchText);
+        }
+                
+        
         List<ListResponse> responseList = new ArrayList<>();
         for(Episode ep : episodes) {
             
@@ -93,10 +104,6 @@ public class EpisodeListServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/episode/list.jsp");
         dispatcher.forward(request, response);
         
-   
-        
-        
-
 
 
     }

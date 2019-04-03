@@ -3,7 +3,7 @@
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1">
+         version="3.1">    
     <session-config>
         <session-timeout>
             30
@@ -23,9 +23,6 @@
         Vgl. https://docs.oracle.com/javaee/7/tutorial/security-advanced003.htm
         Vgl. https://dzone.com/articles/jdbc-realm-and-form-based
     -->
-    
-    
-    
     
     <security-constraint>
         <display-name>
@@ -77,7 +74,7 @@
     <!--
         Definition der JSP-Dateien mit dem Loginformular und einer Fehlerseite,
         falls der Anwender sich vertippt.
-    -->
+    -->  
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>todo-app</realm-name>
@@ -88,6 +85,20 @@
         </form-login-config>
     </login-config>
     
+    <!--
+    <filter>
+        <filter-name>BasicAuthFilter</filter-name>
+        <filter-class>dhbwka.wwi.vertsys.javaee.mediavote.webservice.BasicLoginFilter</filter-class>
+        <init-param>
+        <param-name>role-names-comma-sep</param-name>
+        <param-value>app-user</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>BasicLoginFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+    -->
     
 </web-app>
 
