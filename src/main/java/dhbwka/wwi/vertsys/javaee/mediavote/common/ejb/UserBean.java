@@ -28,6 +28,10 @@ public class UserBean {
     
     @Resource
     EJBContext ctx;
+    
+    public User findByUsername(String username) {
+         return em.find(User.class, username);
+    }
 
     /**
      * Gibt das Datenbankobjekt des aktuell eingeloggten Benutzers zurück,

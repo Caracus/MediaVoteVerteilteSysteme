@@ -24,6 +24,9 @@
         Vgl. https://dzone.com/articles/jdbc-realm-and-form-based
     -->
     
+    
+    
+    
     <security-constraint>
         <display-name>
             Geschützter Bereich für angemeldete Benutzer
@@ -69,6 +72,8 @@
         <role-name>app-user</role-name>
     </security-role>
     
+   
+    
     <!--
         Definition der JSP-Dateien mit dem Loginformular und einer Fehlerseite,
         falls der Anwender sich vertippt.
@@ -82,4 +87,8 @@
             <form-error-page>/WEB-INF/login/error.jsp</form-error-page>
         </form-login-config>
     </login-config>
+    
+    
 </web-app>
+
+
