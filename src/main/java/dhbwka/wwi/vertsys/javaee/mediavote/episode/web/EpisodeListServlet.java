@@ -10,12 +10,16 @@
 package dhbwka.wwi.vertsys.javaee.mediavote.episode.web;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.common.ejb.UserBean;
+import dhbwka.wwi.vertsys.javaee.mediavote.common.jpa.User;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.ejb.EpisodeBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
+import dhbwka.wwi.vertsys.javaee.mediavote.score.web.ScoreServlet;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,11 +28,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  * Servlet für die tabellarische Auflisten der Aufgaben.
  */
 @WebServlet(urlPatterns = {"/app/episode/list/"})
 public class EpisodeListServlet extends HttpServlet {
+    
+    private static final Logger logger = Logger.getLogger(EpisodeListServlet.class.getName());
 
     @EJB
     private ScoreBean scoreBean;
@@ -43,10 +50,14 @@ public class EpisodeListServlet extends HttpServlet {
    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               
         
+        User user = userBean.getCurrentUser();
+                 
         List<Episode> episodes = this.episodeBean.findAll();
+        List<ListResponse> responseList = new ArrayList<>();
         for(Episode ep : episodes) {
+            
+            //Berechne Durchschnittswert
             List<Score> scores = scoreBean.findByEpisode(ep.getId());
             int i = 0;
             double scoreSum = 0;
@@ -59,8 +70,24 @@ public class EpisodeListServlet extends HttpServlet {
                 avgScore = scoreSum / i;
             }
             ep.setAvgRating(avgScore);
+            
+            //Ermittle Nutzer-Bewertung
+                     
+            scores = scoreBean.findByUserAndEpisode(user.getUsername(), ep.getId());   
+            String score;
+             
+            if (!scores.isEmpty()) {
+               score = "" + scores.get(0).getRating();
+
+            }
+            else {
+                score = "Jetzt bewerten";
+            }
+            ListResponse listResponse = new ListResponse(ep, score);
+            responseList.add(listResponse);
+        
         }
-        request.setAttribute("episodes", episodes);
+        request.setAttribute("responseList", responseList);
               
                 
         // Anfrage an dazugerhörige JSP weiterleiten

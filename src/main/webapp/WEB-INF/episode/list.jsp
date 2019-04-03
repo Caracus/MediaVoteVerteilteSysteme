@@ -33,7 +33,7 @@
 
         <%-- Gefundene Aufgaben --%>
         <c:choose>
-            <c:when test="${empty episodes}">
+            <c:when test="${empty responseList}">
                 <p>
                     Es wurden keine Episoden gefunden. 😪
                 </p>
@@ -53,30 +53,30 @@
                             <th>Durch. Bewertung</th>
                         </tr>
                     </thead>
-                    <c:forEach items="${episodes}" var="episode">
+                    <c:forEach items="${responseList}" var="responseListItem">
                         <tr>
                             <td>
-                                <c:out value="${episode.user.firstName}"/>
+                                <c:out value="${responseListItem.episode.user.username}"/>
                             </td>
                             <td>
-                                <c:out value="${episode.name}"/>
+                                <c:out value="${responseListItem.episode.series}"/>
                             </td>
                             <td>
-                                <c:out value="${episode.season}"/>
+                                <c:out value="${responseListItem.episode.season}"/>
                             </td>
                             <td>
-                                <c:out value="${episode.name}"/>
+                                <c:out value="${responseListItem.episode.name}"/>
                             </td>
                             <td>
-                                <c:out value="${episode.number}"/>
+                                <c:out value="${responseListItem.episode.number}"/>
                             </td>
                             <td>
-                                 <a href="<c:url value="/app/score/${episode.id}"/>">
-                                <c:out value="Jetzt bewerten"/>
+                                 <a href="<c:url value="/app/score/${responseListItem.episode.id}"/>">
+                                <c:out value="${responseListItem.score}"/>
                                  </a>
                             </td>
                             <td>
-                                <c:out value="${episode.avgRating}"/>
+                                <c:out value="${responseListItem.episode.avgRating}"/>
                             </td>
                                                           
                                

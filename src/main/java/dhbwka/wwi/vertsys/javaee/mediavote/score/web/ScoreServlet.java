@@ -85,10 +85,12 @@ public class ScoreServlet extends HttpServlet {
         //Episode episode = new Episode(user, name, series, season, number, description);
         
         List<Score> scores = scoreBean.findByUserAndEpisode(user.getUsername(), episode.getId());
+        /*
         logger.log(Level.INFO, "Alle Scores zur Episode");
         for(Score score : scores) {
             logger.log(Level.INFO, score.toString());
         }
+        */
         
         
         
@@ -110,7 +112,7 @@ public class ScoreServlet extends HttpServlet {
         
         
      // Keine Fehler: Startseite aufrufen
-        response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));   
+        response.sendRedirect(WebUtils.appUrl(request, "/app/episode/list/"));   
         
     }
     

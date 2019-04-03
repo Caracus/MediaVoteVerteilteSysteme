@@ -56,7 +56,7 @@
 }
  
 .icon-login:before { content: '\021A9'; } /* '' */
-.icon-pencil:before { content: '\e801'; } /* '' */
+.icon-pencil:before { content: '\02606'; } /* '' */
 .icon-trash-empty:before { content: '\e802'; } /* '' */
 .icon-doc:before { content: '\e803'; } /* '' */
 .icon-cog:before { content: '\e804'; } /* '' */

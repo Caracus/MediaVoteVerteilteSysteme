@@ -122,7 +122,7 @@ public class Episode implements Serializable {
     public void setAvgRating(double avgRating) {
         this.avgRating = avgRating;
     }
-    
+  /*  
     public double calculateAvgRating() {
         
         double sum = 0;
@@ -141,7 +141,7 @@ public class Episode implements Serializable {
        // double avg = 3.0;
         this.avgRating = avg;
         return avg;
-    }
+    }*/
 
     public int getNumber() {
         return number;
