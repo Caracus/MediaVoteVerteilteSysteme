@@ -61,6 +61,15 @@
                 </div>
         
             </div>
+                
+            <%-- Fehlermeldungen --%>
+            <c:if test="${!empty score_form.errors}">
+                <ul class="errors">
+                    <c:forEach items="${score_form.errors}" var="error">
+                        <li>${error}</li>
+                    </c:forEach>
+                </ul>
+            </c:if>
         </form>
     </jsp:attribute>
 </template:base>

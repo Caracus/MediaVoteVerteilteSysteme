@@ -24,11 +24,14 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/app/dashboard/"/>">Dashboard</a>
+            <a href="<c:url value="/app/start/"/>">Start</a>
+        </div>
+        <div class="menuitem">
+            <a href="<c:url value="/app/episode/"/>">Neue Episode</a>
         </div>
         
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/list/"/>">Liste</a>
+            <a href="<c:url value="/app/episode/list/"/>">Episodenliste</a>
         </div>
         
         <div class="menuitem">

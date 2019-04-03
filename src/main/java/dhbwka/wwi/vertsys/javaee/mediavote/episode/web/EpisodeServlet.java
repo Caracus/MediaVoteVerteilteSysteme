@@ -83,13 +83,8 @@ public class EpisodeServlet extends HttpServlet {
         
        this.validationBean.validate(episode, errors);
 
-        // Datensatz speichern
         if (errors.isEmpty()) {
-             episodeBean.saveNew(episode);
-        }
-
-        // Weiter zur nächsten Seite
-        if (errors.isEmpty()) {
+            episodeBean.saveNew(episode);
             // Keine Fehler: Liste aufrufen
             response.sendRedirect(WebUtils.appUrl(request, "/app/episode/list/"));
         } else {

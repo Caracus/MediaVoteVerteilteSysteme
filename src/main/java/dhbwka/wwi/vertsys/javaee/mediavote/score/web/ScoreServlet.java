@@ -10,15 +10,17 @@
 package dhbwka.wwi.vertsys.javaee.mediavote.score.web;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.common.ejb.UserBean;
+import dhbwka.wwi.vertsys.javaee.mediavote.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.mediavote.common.web.FormValues;
 import dhbwka.wwi.vertsys.javaee.mediavote.common.web.WebUtils;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.ejb.EpisodeBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -27,6 +29,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -45,6 +48,9 @@ public class ScoreServlet extends HttpServlet {
     
     @EJB
     private UserBean userBean;
+    
+    @EJB
+    private ValidationBean validationBean;
     
 
     @Override
@@ -78,42 +84,49 @@ public class ScoreServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        List<String> errors = new ArrayList<String>();
+        
         User user = this.userBean.getCurrentUser();
         int rating = Integer.parseInt(request.getParameter("episode_score"));
         Episode episode = getRequestedEpisode(request);    
         
-        //Episode episode = new Episode(user, name, series, season, number, description);
         
         List<Score> scores = scoreBean.findByUserAndEpisode(user.getUsername(), episode.getId());
-        /*
-        logger.log(Level.INFO, "Alle Scores zur Episode");
-        for(Score score : scores) {
-            logger.log(Level.INFO, score.toString());
-        }
-        */
-        
-        
+      
         
         if (!scores.isEmpty()) {
            Score score = scores.get(0);
            score.setRating(rating);
-           scoreBean.update(score); 
-           //episode.calculateAvgRating();
-           //episodeBean.update(episode);
+           this.validationBean.validate(score, errors);
+           if (errors.isEmpty()) {
+               scoreBean.update(score); 
+           }    
         }
         else {
             Score score = new Score(user, episode, rating);
-            scoreBean.saveNew(score);
-            
-            //episode.addScore(score);
-            //episode.calculateAvgRating();
-            //episodeBean.update(episode);
-        }
-        
-        
-     // Keine Fehler: Startseite aufrufen
-        response.sendRedirect(WebUtils.appUrl(request, "/app/episode/list/"));   
-        
+            this.validationBean.validate(score, errors);
+            if (errors.isEmpty()) {
+                scoreBean.saveNew(score);
+            }
+                     
+        }    
+
+        // Weiter zur nächsten Seite
+        if (errors.isEmpty()) {
+            // Keine Fehler: Liste aufrufen
+            response.sendRedirect(WebUtils.appUrl(request, "/app/episode/list/"));
+        } else {
+            // Fehler: Formuler erneut anzeigen
+            FormValues formValues = new FormValues();
+            formValues.setValues(request.getParameterMap());
+            formValues.setErrors(errors);
+
+            HttpSession session = request.getSession();
+            session.setAttribute("score_form", formValues);
+
+            response.sendRedirect(request.getRequestURI());
+        }  
+          
     }
     
     private Episode getRequestedEpisode(HttpServletRequest request) {

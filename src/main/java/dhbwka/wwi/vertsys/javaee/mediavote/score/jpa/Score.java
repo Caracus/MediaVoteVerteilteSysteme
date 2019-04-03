@@ -18,6 +18,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -41,6 +43,8 @@ public class Score implements Serializable {
     //Bewertung von 1 bis 5
     //@Column(nullable=false, precision=1)
     @NotNull(message = "Bewertung muss ausgefüllt werden.")
+    @Min(1)
+    @Max(10)
     private int rating;
     
     //Konstruktoren

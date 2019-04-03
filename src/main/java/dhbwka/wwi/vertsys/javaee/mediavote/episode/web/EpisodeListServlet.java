@@ -15,7 +15,6 @@ import dhbwka.wwi.vertsys.javaee.mediavote.episode.ejb.EpisodeBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
-import dhbwka.wwi.vertsys.javaee.mediavote.score.web.ScoreServlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
