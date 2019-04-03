@@ -84,7 +84,7 @@ public class SignUpServlet extends HttpServlet {
         if (errors.isEmpty()) {
             // Keine Fehler: Startseite aufrufen
             request.login(username, password1);
-            response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));
+            response.sendRedirect(WebUtils.appUrl(request, "/app/start/"));
         } else {
             // Fehler: Formuler erneut anzeigen
             FormValues formValues = new FormValues();

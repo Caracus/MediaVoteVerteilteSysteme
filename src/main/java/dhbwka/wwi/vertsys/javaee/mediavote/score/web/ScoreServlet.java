@@ -57,6 +57,8 @@ public class ScoreServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        HttpSession session = request.getSession();
+        
         User user = this.userBean.getCurrentUser();
         List<Score> scores;
         try {
@@ -78,6 +80,9 @@ public class ScoreServlet extends HttpServlet {
         // Anfrage an dazugerhörige JSP weiterleiten
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/episode/score.jsp");
         dispatcher.forward(request, response);
+        
+        // Alte Formulardaten aus der Session entfernen
+        session.removeAttribute("episode_form");
     }
 
     @Override
