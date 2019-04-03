@@ -80,7 +80,9 @@
                                 <c:out value="${responseListItem.episode.season}"/>
                             </td>
                             <td>
+                                <a href="<c:url value="/app/episode/${responseListItem.episode.id}"/>">
                                 <c:out value="${responseListItem.episode.name}"/>
+                                </a>
                             </td>
                             <td>
                                 <c:out value="${responseListItem.episode.number}"/>

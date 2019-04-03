@@ -50,14 +50,14 @@
                     Passwort:
                 </label>
                 <div class="side-by-side">
-                    <input type="password" name="password_password1" value="${password_form.values["password_password1"][0]}">
+                    <input type="password" name="password_password1" required="required" value="${password_form.values["password_password1"][0]}">
                 </div>
 
                 <label for="password_password2">
                     Passwort (wdh.):
                 </label>
                 <div class="side-by-side">
-                    <input type="password" name="password_password2" value="${password_form.values["password_password2"][0]}">
+                    <input type="password" name="password_password2" required="required" value="${password_form.values["password_password2"][0]}">
                 </div>
 
                 <%-- Button zum Abschicken --%>

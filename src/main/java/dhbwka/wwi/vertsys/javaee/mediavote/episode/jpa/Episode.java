@@ -42,10 +42,12 @@ public class Episode implements Serializable {
     @NotNull(message = "Der Name muss angegeben werden.")
     @Size(min = 2, max = 30, message = "Der Name muss zwischen zwei und 30 Zeichen lang sein.")
     private String name;
+    @NotNull(message = "Die Serie muss angegeben werden.")
     private String series;
+    @NotNull(message = "Die Staffel muss angegeben werden.")
     private String season;
+    @NotNull(message = "Die Episodennummer muss angegeben werden.")
     private int number;
-    @Transient
     private String description;
     private double avgRating;
     
@@ -61,6 +63,17 @@ public class Episode implements Serializable {
         this.number = number;
         this.description = description;
     }
+
+    public Episode(Long id, User user, String name, String series, String season, int number, String description) {
+        this.id = id;
+        this.user = user;
+        this.name = name;
+        this.series = series;
+        this.season = season;
+        this.number = number;
+        this.description = description;
+    }
+     
 
     public Episode(Long id, User user, String name, String series, String season, int number, String description, double avgRating) {
         this.id = id;

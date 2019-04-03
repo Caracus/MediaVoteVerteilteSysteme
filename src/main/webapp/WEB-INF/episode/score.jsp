@@ -51,7 +51,7 @@
                 
                 <label for="episode_score">Deine Bewertung von 1 bis 10:</label>
                 <div class="side-by-side">
-                    <input type="number" name="episode_score" min="1" max="10" value="${score.rating}" >
+                    <input type="number" step="1" name="episode_score" min="1" max="10" required="required" value="${score.rating}" >
                 </div>
                     
                 <div class="side-by-side">
