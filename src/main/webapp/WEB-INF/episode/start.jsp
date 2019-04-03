@@ -14,6 +14,11 @@
     </jsp:attribute>
 
     <jsp:attribute name="menu">        
+        
+        <div class="menuitem">
+            <a href="<c:url value="/app/start/"/>">Start</a>
+        </div>
+        
          <div class="menuitem">
             <a href="<c:url value="/app/episode/"/>">Neue Episode</a>
         </div>
@@ -34,22 +39,6 @@
         
         <h1>Willkommen ${firstname}</h1>
 
-        <table>
-            <tr>
-                <td>
-                    <a href="<c:url value="/app/episode/list/"/>">
-                    <c:out value="Liste alle Episoden"/>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="<c:url value="/app/episode/"/>">
-                    <c:out value="Neue Episode eintragen"/>
-                    </a>
-                </td>                               
-            </tr>
-        </table>
 
     </jsp:attribute>
         

@@ -35,12 +35,16 @@
     <jsp:attribute name="content">
         <%-- Suchfilter --%>
 
+            
         <form method="GET" class="horizontal" id="search">
-            <input type="text" name="search_text" value="${param.search_text}" placeholder="Beschreibung"/>
-            <button class="icon-search" type="submit">
-                Suchen
-            </button>
+             <div id="container">
+             <div class="buttonInside">
+             <input type="text" name="search_text" value="${param.search_text}" id="searchInput" placeholder="Serienname">
+             <button class="icon-search" type="submit" id="searchButton">Suchen</button>
+            </div>
+            </div>
         </form>
+            
 
         <%-- Gefundene Aufgaben --%>
         <c:choose>
