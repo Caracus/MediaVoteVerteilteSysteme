@@ -22,6 +22,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.persistence.Transient;
 
 /**
  * Eine zu erledigende Aufgabe.
@@ -44,6 +45,7 @@ public class Episode implements Serializable {
     private String series;
     private String season;
     private int number;
+    @Transient
     private String description;
     private double avgRating;
     

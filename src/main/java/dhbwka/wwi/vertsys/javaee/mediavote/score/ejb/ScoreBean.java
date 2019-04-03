@@ -39,10 +39,12 @@ public class ScoreBean extends EntityBean<Score, Long> {
                 .getResultList();
     }
     
-     public List<Score> findByUser (String username) {
-        return em.createQuery("SELECT s FROM Score s WHERE s.operator.username = :username") //ORDER BY s.rating DESC
-                .setParameter("username", username)
-                .getResultList();
+    public List<Score> findByUserTop (){
+        return em.createQuery("SELECT s FROM Score s").getResultList();
+    }
+    
+     public List<Score> findByUser(String username) {
+        return em.createQuery("SELECT s FROM Score s").getResultList();
     }
     
 }
