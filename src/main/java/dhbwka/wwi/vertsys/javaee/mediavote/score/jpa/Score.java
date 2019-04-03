@@ -40,6 +40,7 @@ public class Score implements Serializable {
 
     //Bewertung von 1 bis 5
     //@Column(nullable=false, precision=1)
+    @NotNull(message = "Bewertung muss ausgefüllt werden.")
     private int rating;
     
     //Konstruktoren
