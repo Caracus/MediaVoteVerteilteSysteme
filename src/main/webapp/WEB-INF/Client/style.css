@@ -1,0 +1,39 @@
+html {
+    background-color: grey;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+}
+table {
+    font-family: fantasy;
+    border-collapse: collapse;
+    background-color: white;
+    margin: 1.5em 0;
+    width:100%;
+}
+
+td input{
+    width:100%;
+    border:none;
+    background: #fff;
+}
+
+td, th {
+    border: 2.5px solid #dddddd;
+    text-align: left;
+    padding: 4px;
+}
+
+td:first-child, th:first-child{
+    border-left:none;
+}
+
+td:last-child, th:last-child{
+    border-right: none;
+}
+
+th{
+    background-color: red;
+}
