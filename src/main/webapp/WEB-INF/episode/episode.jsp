@@ -55,22 +55,22 @@
                 
                 <label for="episode_series">Serienname:</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_series" value="${episode.series}" >
+                    <input type="text" name="episode_series" required="required" value="${episode.series}" >
                 </div>
                 
                 <label for="episode_season">Staffel:</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_season" value="${episode.season}" >
+                    <input type="text" name="episode_season" required="required" value="${episode.season}" >
                 </div>
                 
                 <label for="episode_name">Episodenname:</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_name" value="${episode.name}" >
+                    <input type="text" name="episode_name" required="required" value="${episode.name}" >
                 </div>
                 
                 <label for="episode_number">Episodennummer:</label>
                 <div class="side-by-side">
-                    <input type="number" name="episode_number" type="number" step="1" value="${episode.number}" >
+                    <input type="number" name="episode_number" type="number" step="1" required="required" value="${episode.number}" >
                 </div>
                 
                 <label for="episode_description">Beschreibung:</label>
