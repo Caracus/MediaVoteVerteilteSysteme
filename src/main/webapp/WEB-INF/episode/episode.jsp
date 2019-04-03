@@ -44,6 +44,8 @@
             <div class="column">
                 <%-- CSRF-Token --%>
                 <input type="hidden" name="csrf_token" value="${csrf_token}">
+                <%-- Speicher für ID --%>
+                <input type="hidden" name="episode_id" value="${episode.id}">
 
                 <%-- Eingabefelder --%>
                 <label for="episode_user">Ersteller:</label>
@@ -53,27 +55,27 @@
                 
                 <label for="episode_series">Serienname:</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_series" value="" >
+                    <input type="text" name="episode_series" value="${episode.series}" >
                 </div>
                 
                 <label for="episode_season">Staffel:</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_season" value="" >
+                    <input type="text" name="episode_season" value="${episode.season}" >
                 </div>
                 
                 <label for="episode_name">Episodenname:</label>
                 <div class="side-by-side">
-                    <input type="text" name="episode_name" value="" >
+                    <input type="text" name="episode_name" value="${episode.name}" >
                 </div>
                 
                 <label for="episode_number">Episodennummer:</label>
                 <div class="side-by-side">
-                    <input type="number" name="episode_number" value="" >
+                    <input type="number" name="episode_number" type="number" step="1" value="${episode.number}" >
                 </div>
                 
                 <label for="episode_description">Beschreibung:</label>
                 <div class="side-by-side">
-                    <textarea name="episode_description" value="" ></textarea>
+                    <input name="episode_description" value="${episode.description}" ></input>
                 </div>
                 
                   <div class="side-by-side">

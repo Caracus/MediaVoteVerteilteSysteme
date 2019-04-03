@@ -17,6 +17,7 @@ import dhbwka.wwi.vertsys.javaee.mediavote.common.web.WebUtils;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.ejb.EpisodeBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
+import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet für die tabellarische Auflisten der Aufgaben.
  */
-@WebServlet(urlPatterns = {"/app/episode/"})
+@WebServlet(urlPatterns = {"/app/episode/*"})
 public class EpisodeServlet extends HttpServlet {
 
     @EJB
@@ -55,6 +56,13 @@ public class EpisodeServlet extends HttpServlet {
         
         User user = this.userBean.getCurrentUser();
         request.setAttribute("user", user);
+           
+        try {
+            Episode episode = getRequestedEpisode(request);
+            request.setAttribute("episode", episode);
+        } catch(Exception e) {
+            
+        }
         
         // Anfrage an dazugerhörige JSP weiterleiten
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/episode/episode.jsp");
@@ -77,15 +85,31 @@ public class EpisodeServlet extends HttpServlet {
         String season = request.getParameter("episode_season");
         int number = Integer.parseInt(request.getParameter("episode_number"));
         String description = request.getParameter("episode_description");
+        String idString = request.getParameter("episode_id");
         
-        Episode episode = new Episode(user, name, series, season, number, description);
+        Episode episode;
+        Boolean newEntry = false;
         
+        if(idString == null || idString.isEmpty()) {
+            episode = new Episode(user, name, series, season, number, description);
+            newEntry = true;
+        } else {
+            Long id = Long.parseLong(idString);
+            episode = new Episode(id, user, name, series, season, number, description);
+        }
         
+    
        this.validationBean.validate(episode, errors);
 
         if (errors.isEmpty()) {
-            episodeBean.saveNew(episode);
-            // Keine Fehler: Liste aufrufen
+            if(newEntry) {
+                episodeBean.saveNew(episode);
+            }
+            else {
+                episodeBean.update(episode);
+            }
+            
+
             response.sendRedirect(WebUtils.appUrl(request, "/app/episode/list/"));
         } else {
             // Fehler: Formuler erneut anzeigen
@@ -100,4 +124,30 @@ public class EpisodeServlet extends HttpServlet {
         }    
         
     }
+    
+    private Episode getRequestedEpisode(HttpServletRequest request) {
+         // ID aus der URL herausschneiden
+        String episodeIdString = request.getPathInfo();
+
+        if (episodeIdString == null) {
+            episodeIdString = "/1";
+        }
+
+        episodeIdString = episodeIdString.substring(1);
+
+        if (episodeIdString.endsWith("/")) {
+            episodeIdString = episodeIdString.substring(0, episodeIdString.length() - 1);
+        }
+        
+        long episodeId = Long.parseLong(episodeIdString);
+        Episode episode;
+    
+        try {
+           episode = this.episodeBean.findById(episodeId); 
+        } catch(NumberFormatException e) {
+            throw e;
+        }       
+        return episode;
+    }
+    
 }
