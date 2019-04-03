@@ -63,6 +63,11 @@ public abstract class EntityBean<Entity, EntityId> {
         return em.createQuery(select).getResultList();
     }
 
+    public List<Entity> findTop() {
+        String select = "SELECT e FROM $E e".replace("$E", this.entityClass.getName());
+        return em.createQuery(select).getResultList();
+    }
+    
     /**
      * Speichern eines neuen Datensatzes.
      * @param entity Zu speichernder Datensatz
