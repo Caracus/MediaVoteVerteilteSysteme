@@ -12,6 +12,8 @@ package dhbwka.wwi.vertsys.javaee.mediavote.episode.rest;
 import com.google.gson.Gson;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.ejb.EpisodeBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
+import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
+import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -30,13 +32,32 @@ public class EpisodeResource {
 
     @EJB
     private EpisodeBean episodeBean;
+    
+    @EJB
+    private ScoreBean scoreBean;
 
     @GET
     public String findEpisodes() {
         List<Episode> episodes = this.episodeBean.findAll();
-        //Entferne Userdaten aus zu übergebendem Datensatz
+          
         episodes.forEach((ep) -> {
+            //Entferne Userdaten aus zu übergebendem Datensatz
             ep.setUser(null);
+            /*
+            //Berechne Durchschnittswert
+            List<Score> scores = scoreBean.findByEpisode(ep.getId());
+            int i = 0;
+            double scoreSum = 0;
+            for(Score score : scores) {
+                scoreSum = scoreSum + score.getRating();
+                i++;
+            }
+            double avgScore = 0.0;
+            if(i > 0) {
+                avgScore = scoreSum / i;
+            }
+            ep.setAvgRating(avgScore);*/
+            
         });
                  
         String json = gson.toJson(episodes);

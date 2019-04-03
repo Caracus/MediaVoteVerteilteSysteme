@@ -16,7 +16,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 
 /**
- * Einfache EJB mit den üblichen CRUD-Methoden für Aufgaben (werden geerbt)
+ * Bean für Scores
  */
 @Stateless
 @RolesAllowed("app-user")

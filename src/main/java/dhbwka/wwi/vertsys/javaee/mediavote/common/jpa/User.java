@@ -57,9 +57,8 @@ public class User implements Serializable {
     @NotNull(message = "Das Passwort darf nicht leer sein.")
     private String passwordHash;
     
-    //Vorname: Optional
     @Column(name = "FIRSTNAME", length = 64)
-    @Size(min = 0, max = 64, message = "Der Vorname darf maximal 64 Zeichen lang sein.")
+    @Size(min = 2, max = 64, message = "Der Vorname darf maximal 64 Zeichen lang sein.")
     private String firstName;
     
     //Nachname: Optional

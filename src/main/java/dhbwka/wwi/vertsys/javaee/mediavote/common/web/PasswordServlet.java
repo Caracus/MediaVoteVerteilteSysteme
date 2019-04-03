@@ -26,8 +26,8 @@ import javax.servlet.http.HttpSession;
 /**
  * toComment
  */
-@WebServlet(urlPatterns = {"/app/profile/"})
-public class ProfileServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/app/password/"})
+public class PasswordServlet extends HttpServlet {
     
     @EJB
     ValidationBean validationBean;
@@ -40,15 +40,13 @@ public class ProfileServlet extends HttpServlet {
             throws ServletException, IOException {
         User user = this.userBean.getCurrentUser();
         HttpSession session = request.getSession();
-        session.setAttribute("firstname", user.getFirstName());
-        session.setAttribute("lastname", user.getLastName());
         
         // Anfrage an dazugerhörige JSP weiterleiten
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/profile/profile.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/profile/password.jsp");
         dispatcher.forward(request, response);
         
         // Alte Formulardaten aus der Session entfernen
-        session.removeAttribute("profile_form");
+        session.removeAttribute("password_form");
     }
     
     @Override
@@ -56,18 +54,22 @@ public class ProfileServlet extends HttpServlet {
             throws ServletException, IOException {
         
         // Formulareingaben auslesen        
-        String firstname = request.getParameter("profile_firstname");
-        String lastname = request.getParameter("profile_lastname");
-  
+        String password1 = request.getParameter("password_password1");
+        String password2 = request.getParameter("password_password2");
+
         // Validierung (leeres Feld erlaubt, da kein Pflichtfeld)
         User user = this.userBean.getCurrentUser();
-        user.setFirstName(firstname);
-        user.setLastName(lastname);
-        
+
         List<String> errors = this.validationBean.validate(user);
-        this.validationBean.validate(user.getFirstName(), errors);
-        this.validationBean.validate(user.getLastName(), errors);
           
+        if (!password1.equals("")) {
+            user.setPassword(password1);
+            this.validationBean.validate(user.getPassword(), errors);
+        }
+        
+         if (!password1.equals(password2)) {
+            errors.add("Die beiden Passwörter stimmen nicht überein.");
+        }
         
         // Benutzer updaten 
         if (errors.isEmpty()) {
@@ -91,7 +93,7 @@ public class ProfileServlet extends HttpServlet {
             formValues.setErrors(errors);
             
             HttpSession session = request.getSession();
-            session.setAttribute("profile_form", formValues);
+            session.setAttribute("password_form", formValues);
             
             response.sendRedirect(request.getRequestURI());
         }

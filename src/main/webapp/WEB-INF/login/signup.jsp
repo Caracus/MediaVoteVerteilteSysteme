@@ -48,6 +48,7 @@
                     
                     <label for="signup_firstname">
                         Vorname:
+                        <span class="required">*</span>
                     </label>
                     <div class="side-by-side">
                         <input type="text" name="signup_firstname" value="${signup_form.values["signup_firstname"][0]}">

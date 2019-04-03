@@ -15,7 +15,7 @@
 
 <template:base>
     <jsp:attribute name="title">
-           Profil bearbeiten
+           Passwort bearbeiten
     </jsp:attribute>
 
     <jsp:attribute name="head">
@@ -45,35 +45,33 @@
                 <%-- CSRF-Token --%>
                 <input type="hidden" name="csrf_token" value="${csrf_token}">
 
-                <%-- Eingabefelder --%>
-                <label for="profile_firstname">Vorname</label>
+                <%-- Eingabefelder --%>                
+                <label for="password_password1">
+                    Passwort:
+                </label>
                 <div class="side-by-side">
-                    <input type="text" name="profile_firstname" value="${firstname}">
+                    <input type="password" name="password_password1" value="${password_form.values["password_password1"][0]}">
                 </div>
-                
-                <label for="profile_lastname">Nachname</label>
+
+                <label for="password_password2">
+                    Passwort (wdh.):
+                </label>
                 <div class="side-by-side">
-                    <input type="text" name="profile_lastname" value="${lastname}">
+                    <input type="password" name="password_password2" value="${password_form.values["password_password2"][0]}">
                 </div>
 
                 <%-- Button zum Abschicken --%>
                 <div class="side-by-side">
                     <button class="icon-pencil" type="submit" name="action" value="save">
-                        Daten aktualisieren
+                        Passwort aktualisieren
                     </button>
-                </div>
-                
-                
-                <div class="menuitem">
-                    
-                    <a href="<c:url value="/app/password/"/>">Passwort hier ändern</a>
                 </div>
             </div>
 
             <%-- Fehlermeldungen --%>
-            <c:if test="${!empty profile_form.errors}">
+            <c:if test="${!empty password_form.errors}">
                 <ul class="errors">
-                    <c:forEach items="${profile_form.errors}" var="error">
+                    <c:forEach items="${password_form.errors}" var="error">
                         <li>${error}</li>
                     </c:forEach>
                 </ul>

@@ -84,7 +84,7 @@
         
             </div>
                 
-                <%-- Fehlermeldungen --%>
+            <%-- Fehlermeldungen --%>
             <c:if test="${!empty episode_form.errors}">
                 <ul class="errors">
                     <c:forEach items="${episode_form.errors}" var="error">
