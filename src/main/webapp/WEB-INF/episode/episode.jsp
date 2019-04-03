@@ -9,7 +9,7 @@
 <template:base>
     <jsp:attribute name="title">
         <c:choose>
-            <c:when test="${edit}">
+            <c:when test="${episode.id != NULL}">
                 Episode bearbeiten
             </c:when>
             <c:otherwise>
