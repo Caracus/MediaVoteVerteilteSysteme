@@ -20,6 +20,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Eine zu erledigende Aufgabe.
@@ -36,6 +38,8 @@ public class Episode implements Serializable {
     @ManyToOne
     private User user;
     
+    @NotNull(message = "Der Name muss angegeben werden.")
+    @Size(min = 2, max = 30, message = "Der Name muss zwischen zwei und 30 Zeichen lang sein.")
     private String name;
     private String series;
     private String season;

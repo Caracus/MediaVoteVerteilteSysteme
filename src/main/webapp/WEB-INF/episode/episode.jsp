@@ -10,10 +10,10 @@
     <jsp:attribute name="title">
         <c:choose>
             <c:when test="${edit}">
-                Aufgabe bearbeiten
+                Episode bearbeiten
             </c:when>
             <c:otherwise>
-                Aufgabe anlegen
+                Episode anlegen
             </c:otherwise>
         </c:choose>
     </jsp:attribute>
@@ -32,6 +32,10 @@
         
         <div class="menuitem">
             <a href="<c:url value="/app/episode/list/"/>">Episodenliste</a>
+        </div>
+        
+        <div class="menuitem">
+            <a href="<c:url value="/app/profile/"/>">Mein Profil</a>
         </div>
     </jsp:attribute>
 
@@ -79,6 +83,16 @@
                   </div>
         
             </div>
+                
+                <%-- Fehlermeldungen --%>
+            <c:if test="${!empty episode_form.errors}">
+                <ul class="errors">
+                    <c:forEach items="${episode_form.errors}" var="error">
+                        <li>${error}</li>
+                    </c:forEach>
+                </ul>
+            </c:if>
+            
         </form>
     </jsp:attribute>
 </template:base>

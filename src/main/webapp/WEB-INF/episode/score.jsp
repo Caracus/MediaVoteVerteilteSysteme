@@ -26,6 +26,10 @@
         <div class="menuitem">
             <a href="<c:url value="/app/episode/list/"/>">Episodenliste</a>
         </div>
+        
+        <div class="menuitem">
+            <a href="<c:url value="/app/profile/"/>">Mein Profil</a>
+        </div>
     </jsp:attribute>
 
     <jsp:attribute name="content">

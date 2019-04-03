@@ -10,12 +10,16 @@
 package dhbwka.wwi.vertsys.javaee.mediavote.episode.web;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.common.ejb.UserBean;
+import dhbwka.wwi.vertsys.javaee.mediavote.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.mediavote.common.web.FormValues;
 import dhbwka.wwi.vertsys.javaee.mediavote.common.web.WebUtils;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.ejb.EpisodeBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,6 +44,9 @@ public class EpisodeServlet extends HttpServlet {
     @EJB
     private UserBean userBean;
     
+    @EJB
+    private ValidationBean validationBean;
+    
 
    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -61,6 +68,7 @@ public class EpisodeServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        List<String> errors = new ArrayList<>();
         User user = this.userBean.getCurrentUser();
         
         // Formulareingaben auslesen    
@@ -71,12 +79,30 @@ public class EpisodeServlet extends HttpServlet {
         String description = request.getParameter("episode_description");
         
         Episode episode = new Episode(user, name, series, season, number, description);
+        
+        
+       this.validationBean.validate(episode, errors);
 
-        episodeBean.saveNew(episode);
-   
-   
-        // Keine Fehler: Startseite aufrufen
-        response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));      
+        // Datensatz speichern
+        if (errors.isEmpty()) {
+             episodeBean.saveNew(episode);
+        }
+
+        // Weiter zur nächsten Seite
+        if (errors.isEmpty()) {
+            // Keine Fehler: Liste aufrufen
+            response.sendRedirect(WebUtils.appUrl(request, "/app/episode/list/"));
+        } else {
+            // Fehler: Formuler erneut anzeigen
+            FormValues formValues = new FormValues();
+            formValues.setValues(request.getParameterMap());
+            formValues.setErrors(errors);
+
+            HttpSession session = request.getSession();
+            session.setAttribute("episode_form", formValues);
+
+            response.sendRedirect(request.getRequestURI());
+        }    
         
     }
 }

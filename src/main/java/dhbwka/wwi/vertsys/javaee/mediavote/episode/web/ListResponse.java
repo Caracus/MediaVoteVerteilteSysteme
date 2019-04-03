@@ -17,8 +17,8 @@ import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 
 public class ListResponse {
 
-   public Episode episode;
-   public String score;
+   private Episode episode;
+   private String score;
 
     public Episode getEpisode() {
         return episode;

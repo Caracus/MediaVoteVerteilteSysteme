@@ -22,11 +22,17 @@
             <a href="<c:url value="/app/episode/list/"/>">Episodenliste</a>
         </div>
         
+        <div class="menuitem">
+            <a href="<c:url value="/app/profile/"/>">Mein Profil</a>
+        </div>
+        
     </jsp:attribute>
 
     <jsp:attribute name="content">
 
         <jsp:useBean id="utils" class="dhbwka.wwi.vertsys.javaee.mediavote.common.web.WebUtils"/>
+        
+        <h1>Willkommen ${firstname}</h1>
 
         <table>
             <tr>

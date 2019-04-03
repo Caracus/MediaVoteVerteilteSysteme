@@ -9,7 +9,10 @@
  */
 package dhbwka.wwi.vertsys.javaee.mediavote.common.web;
 
+import dhbwka.wwi.vertsys.javaee.mediavote.common.ejb.UserBean;
+import dhbwka.wwi.vertsys.javaee.mediavote.common.jpa.User;
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +28,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/index.html"})
 public class IndexServlet extends HttpServlet {
     
+    @EJB
+    UserBean userBean;
+    
     /**
      * GET-Anfrage: Seite anzeigen
      * 
@@ -36,6 +42,12 @@ public class IndexServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws IOException, ServletException {
+        
+        User user = userBean.getCurrentUser();
+        if(user != null) {
+            request.setAttribute("firstname", user.getFirstName());
+        }
+        
         response.sendRedirect(WebUtils.appUrl(request, "/app/start/"));
     }
 
