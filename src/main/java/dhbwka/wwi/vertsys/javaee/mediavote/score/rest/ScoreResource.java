@@ -12,6 +12,7 @@ package dhbwka.wwi.vertsys.javaee.mediavote.score.rest;
 import com.google.gson.Gson;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -32,9 +33,13 @@ public class ScoreResource {
     ScoreBean scoreBean;
 
     @GET
-    public String findEpisodes() {
-        List<Score> scores = this.scoreBean.findAll();
-        String json = gson.toJson(scores);
+    public String findEpisodes(){
+        List<Score> scores = this.scoreBean.findByUserName(); 
+        List<Score> top10Scores = new ArrayList();
+        for(int i=0;i<10;i++){
+            top10Scores.add(scores.get(i));
+        }
+        String json = gson.toJson(top10Scores);
         return json;
     }
 
