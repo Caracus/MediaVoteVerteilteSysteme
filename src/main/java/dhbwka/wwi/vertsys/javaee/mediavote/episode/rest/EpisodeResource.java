@@ -37,7 +37,7 @@ public class EpisodeResource {
     private ScoreBean scoreBean;
 
     @GET
-    public String findEpisodes() {
+    public List<Episode> findEpisodes() {
         List<Episode> episodes = this.episodeBean.findAll();
           
         episodes.forEach((ep) -> {
@@ -59,9 +59,9 @@ public class EpisodeResource {
             ep.setAvgRating(avgScore);
             
         });
-                 
-        String json = gson.toJson(episodes);
-        return json;
+          return episodes;       
+       // String json = gson.toJson(episodes);
+       // return json;
     } 
    
 }

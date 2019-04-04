@@ -1,9 +1,8 @@
 var request = new XMLHttpRequest()
 
-request.open('GET', 'http://localhost:8080/MediaVote/api/episodes', true)
-request.onload = function() {
-    // Begin accessing JSON data here
-    let episodes = JSON.parse(this.response);
+    function createTableForEpisodes(data) {
+
+    let episodes = JSON.parse(data);
 
     episodes.forEach(episode => {
 
@@ -29,5 +28,4 @@ request.onload = function() {
     })
 }
 
-request.send()
 

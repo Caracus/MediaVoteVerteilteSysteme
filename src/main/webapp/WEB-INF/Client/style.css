@@ -37,3 +37,44 @@ td:last-child, th:last-child{
 th{
     background-color: red;
 }
+
+button {
+    background-color: black;
+    border: 1px solid grey;
+    color: darkred;
+}
+
+#navigation .menuButton{
+    padding: 10px 24px;
+    cursor: pointer;
+    float: left;
+    width:160px;
+    height:40px;
+
+}
+
+#navigation {
+    width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    height:40px;
+}
+
+
+#loginDiv {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#loginDiv input{
+    width:120px;
+    height:20px;
+    float: left;
+}
+
+#loginDiv button{
+    width:120px;
+    height:20px;
+    float: left;
+}
