@@ -43,7 +43,7 @@ public class EpisodeResource {
         episodes.forEach((ep) -> {
             //Entferne Userdaten aus zu übergebendem Datensatz
             ep.setUser(null);
-            /*
+            
             //Berechne Durchschnittswert
             List<Score> scores = scoreBean.findByEpisode(ep.getId());
             int i = 0;
@@ -56,7 +56,7 @@ public class EpisodeResource {
             if(i > 0) {
                 avgScore = scoreSum / i;
             }
-            ep.setAvgRating(avgScore);*/
+            ep.setAvgRating(avgScore);
             
         });
                  

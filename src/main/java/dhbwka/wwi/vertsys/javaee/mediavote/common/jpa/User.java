@@ -9,6 +9,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.mediavote.common.jpa;
 
+import dhbwka.wwi.vertsys.javaee.mediavote.episode.web.EpisodeListServlet;
 import dhbwka.wwi.vertsys.javaee.mediavote.tasks.jpa.Task;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
@@ -16,6 +17,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -36,6 +39,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "MEDIAVOTE_USER")
 public class User implements Serializable {
+    
+    private static final Logger logger = Logger.getLogger(EpisodeListServlet.class.getName());
 
     private static final long serialVersionUID = 1L;
     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
@@ -211,9 +216,17 @@ public class User implements Serializable {
     public List<String> getGroups() {
         List<String> groupsCopy = new ArrayList<>();
 
-        this.groups.forEach((groupname) -> {
+        if(this.groups == null || this.groups.isEmpty()) {
+            logger.log(Level.INFO, "Keine Gruppen");
+        }
+        else {
+            logger.log(Level.INFO, "Liste der Gruppen:" + this.groups);
+            this.groups.forEach((groupname) -> {
+            logger.log(Level.INFO, "Gruppe" + groupname);
             groupsCopy.add(groupname);
         });
+        }
+        
 
         return groupsCopy;
     }

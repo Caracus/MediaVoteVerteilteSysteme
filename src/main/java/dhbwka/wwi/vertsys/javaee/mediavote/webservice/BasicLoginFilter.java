@@ -124,7 +124,8 @@ public class BasicLoginFilter implements Filter {
         // check roles for the user
         // Logindaten und Rollenzuordnung prüfen
         User user = this.userBean.findByUsername(userDecoded);
-        boolean hasRoles = false;
+        //Jeder registrierte Benutzer
+        boolean hasRoles = true;
 
         if (user == null) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN, "Benutzerprofil nicht gefunden");

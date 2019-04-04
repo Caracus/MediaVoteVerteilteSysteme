@@ -49,10 +49,10 @@ public class ScoreResource {
         //logger.log(Level.INFO, "Name "+user.getUsername());
         logger.log(Level.INFO, "-----------------------------------Stufe1");
         //List<Score> scores = this.scoreBean.findTop(); 
-        //List<Score> scores = this.scoreBean.findByUser("test123"); 
+        List<Score> scores = this.scoreBean.findByUser("hoppy510"); 
         //logger.log(Level.INFO, "Name "+user.getUsername());
         //List<Score> scores = this.scoreBean.findByUserAndEpisode("test123", 1L); 
-        List<Score> scores = this.scoreBean.findAll(); 
+        //List<Score> scores = this.scoreBean.findAll(); 
         
         int maxLengthList = 10;
         int scoreListLength = scores.size();
