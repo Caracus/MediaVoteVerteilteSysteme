@@ -217,6 +217,7 @@ public class User implements Serializable {
         List<String> groupsCopy = new ArrayList<>();
 
         if(this.groups == null || this.groups.isEmpty()) {
+            logger.log(Level.INFO, "UserName: " + this.username);
             logger.log(Level.INFO, "Keine Gruppen");
         }
         else {
@@ -237,7 +238,9 @@ public class User implements Serializable {
      * @param groupname Name der Benutzergruppe
      */
     public void addToGroup(String groupname) {
+        logger.log(Level.INFO, "Gruppe hinzufügen");
         if (!this.groups.contains(groupname)) {
+            logger.log(Level.INFO, "Gruppe hinzugefügt");
             this.groups.add(groupname);
         }
     }
