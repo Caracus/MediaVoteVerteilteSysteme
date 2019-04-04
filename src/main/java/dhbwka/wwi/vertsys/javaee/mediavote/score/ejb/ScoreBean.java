@@ -44,7 +44,9 @@ public class ScoreBean extends EntityBean<Score, Long> {
     }
     
      public List<Score> findByUser(String username) {
-        return em.createQuery("SELECT s FROM Score s").getResultList();
+        return em.createQuery("SELECT s FROM Score s WHERE s.operator.username = :username ORDER BY s.rating desc")
+                .setParameter("username", username)
+                .getResultList();
     }
     
 }

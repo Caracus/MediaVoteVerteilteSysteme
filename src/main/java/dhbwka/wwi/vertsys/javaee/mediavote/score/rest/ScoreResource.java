@@ -43,32 +43,24 @@ public class ScoreResource {
     UserBean userBean;
 
     @GET
-    public String findScores(){
-        //User user = userBean.getCurrentUser();
-        logger.log(Level.INFO, "-----------------------------------Stufe0");
-        //logger.log(Level.INFO, "Name "+user.getUsername());
-        logger.log(Level.INFO, "-----------------------------------Stufe1");
-        //List<Score> scores = this.scoreBean.findTop(); 
-        List<Score> scores = this.scoreBean.findByUser("hoppy510"); 
-        //logger.log(Level.INFO, "Name "+user.getUsername());
-        //List<Score> scores = this.scoreBean.findByUserAndEpisode("test123", 1L); 
-        //List<Score> scores = this.scoreBean.findAll(); 
+    public String findUserScores(){
+        //Gibt die Top 10 der Bewertungen des anfragenden Nutzers zurück
+        User user = userBean.getCurrentUser();
+        List<Score> scores = this.scoreBean.findByUser(user.getUsername()); 
         
         int maxLengthList = 10;
-        int scoreListLength = scores.size();
-        logger.log(Level.INFO, "-----------------------------------Stufe2");
-        if(scoreListLength < 10){
+        if(scores.size() < 10){
           maxLengthList = scores.size();  
         }
-        logger.log(Level.INFO, "-----------------------------------Stufe3");
-        List<Score> top10Scores = new ArrayList();
-        for(int i=0;i<maxLengthList;i++){
-            top10Scores.add(scores.get(i));
-            logger.log(Level.INFO, "-----------------------------------Stufe4");
+        List<Score> topScores = new ArrayList();
+        for(int i=0; i < maxLengthList; i++){
+            Score score = scores.get(i);
+            score.setOperator(null);
+            score.getEpisode().setUser(null);
+            topScores.add(score);
         }
         
-        String json = gson.toJson(top10Scores);
-        logger.log(Level.INFO, "--------------------------------------Stufe5");
+        String json = gson.toJson(topScores);
         return json;
     }
 
