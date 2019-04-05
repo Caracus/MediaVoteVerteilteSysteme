@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<h1>Alle Episoden</h1>
+<h1>Top10</h1>
 <div id="navigation">
     <button class="menuButton" onclick="window.location.href='index.html'">Start</button>
     <button class="menuButton" onclick="window.location.href='allEpisodes.html'">Alle Episoden</button>
@@ -19,7 +19,7 @@
 </div>
 <form id="logInForm">
     <div id="loginDiv">
-        <input type="text" id="usernameField"value="" placeholder="Username">
+        <input type="text" id="usernameField" value="" placeholder="Username">
         <input type="text" id="usernamePassword" value="" placeholder="Passwort">
         <button id="callDataButton">Absenden</button>
     </div>
@@ -31,7 +31,7 @@
         <th>Staffel</th>
         <th>Episodenname</th>
         <th>Episodennummer</th>
-        <th>Rating</th>
+        <th>Bewertung</th>
     </tr>
 </table>
 <script>
@@ -43,13 +43,13 @@
         console.log(username);
         console.log(password);
 
-        let currentUser = new EpisodeClient();
+        let currentUser = new TopClient();
         currentUser.setAuthData(username, password);
 
-        let temp = currentUser.findEpisodes();
+        let temp = currentUser.findTop();
         console.log(temp);
 
-        //createTableForEpisodes(currentUser.findEpisodes());
+        //createTableForTopEpisodes(currentUser.findTop());
     }
 
 </script>

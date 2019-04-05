@@ -2,10 +2,10 @@
 
 "use strict";
 
-class EpisodeClient {
+class TopClient {
 
     constructor(url) {
-        this.url = url || "./api/episodes";
+        this.url = url || "http://localhost:8080/MediaVote/api/episodes";
         this.username = "";
         this.password = "";
     }
@@ -15,7 +15,7 @@ class EpisodeClient {
         this.password = password;
     }
 
-    async findEpisodes() {
+    async findTop() {
         let response = await fetch(this.url, {
             headers: {
                 "accept": "application/json",

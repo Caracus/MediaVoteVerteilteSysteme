@@ -1,10 +1,14 @@
-Beispielanwendung "tbd"
+Anwendung MediaVote
 =========================
 
 Kurzbeschreibung
 ----------------
 
-Übersicht über versch. Multimediainhalte mit Rating.
+Die Anwendung ermöglicht es einem verschiende Episoden zu Serien anzulegen und diese zu bewerten.
+Der Nutzer kann sich mit einem Account registrieren und sich sobald er eingeloggt ist damit auf der Seite bewegen.
+Die angelegten Episoden sind für alle Nutzer sichtbar und können auch von allen Nutzern bewertet werden, was dann 
+den allgemeinen Durchschnittsscore ergibt. Die gesammelten Daten der verschiedenen Episoden kann auch per
+API abgerufen werden.
 
 Verwendete Technologien
 -----------------------

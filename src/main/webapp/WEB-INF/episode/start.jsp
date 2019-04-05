@@ -31,6 +31,10 @@
             <a href="<c:url value="/app/profile/"/>">Mein Profil</a>
         </div>
         
+        <div class="menuitem">
+            <a href="<c:url value="/app/rest"/>">REST Aufruf</a>
+        </div>
+        
     </jsp:attribute>
 
     <jsp:attribute name="content">
