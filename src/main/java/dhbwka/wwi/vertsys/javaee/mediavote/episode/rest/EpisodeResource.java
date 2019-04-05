@@ -14,6 +14,7 @@ import dhbwka.wwi.vertsys.javaee.mediavote.episode.ejb.EpisodeBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.jpa.Episode;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.ejb.ScoreBean;
 import dhbwka.wwi.vertsys.javaee.mediavote.score.jpa.Score;
+import java.util.Collections;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -59,6 +60,7 @@ public class EpisodeResource {
             ep.setAvgRating(avgScore);
             
         });     
+        //Collections.sort(episodes); Ruiniert die Liste
        String json = gson.toJson(episodes);
        return json;
     } 

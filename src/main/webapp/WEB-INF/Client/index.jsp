@@ -6,7 +6,7 @@
 
 <template:base>
     <jsp:attribute name="title">
-        Liste der Episoden
+        Rest Abfragen
     </jsp:attribute>
 
     <jsp:attribute name="head">
@@ -17,18 +17,18 @@
     <jsp:attribute name="content">
 
 
-        <h1>Startseite</h1>
+        <h1>Rest Abfragen</h1>
+        <div class="wrapper">
         <div id="navigation">
-            <button id="allEpisodesButton" class="menuButton" >Alle Episoden</button>
-            <button id="top10Button" class="menuButton" >Top 10</button>
+            <button id="allEpisodesButton" class="menuButton" >Rangliste</button>
+            <button id="top10Button" class="menuButton" >Deine Top 10</button>
         </div>
-
-        <form id="logInForm">
+        <br>
             <div id="loginDiv">
-                <input type="text" id="usernameField" value="" placeholder="Username">
-                <input type="text" id="usernamePassword" value="" placeholder="Passwort">
+                <input class="loginFields" type="text" id="usernameField" value="" placeholder="Username">
+                <input class="loginFields" type="text" id="usernamePassword" value="" placeholder="Passwort">
             </div>
-        </form>
+        </div>
 
         <table id="tabelle">
             <tr>
@@ -53,17 +53,7 @@
                 currentUser.setAuthData(username, password);
                 
               var tempData = currentUser.findEpisodes();
-              console.log(tempData);
-              console.log("PointA");
-              //var tempData2 = JSON.parse(tempData);
-              //console.log(tempData2);
-              consoleLogger(tempData);
-              
-              console.log("PointB");
-
-                //console.log(currentUser.findEpisodes());
-
-                //createTableForEpisodes(currentUser.findEpisodes());
+              fcAllEpisodes(tempData);
             }
 
             function getTop10Episodes() {
@@ -72,8 +62,12 @@
                 console.log(username);
                 console.log(password);
 
-                let currentUser = new EpisodeClient();
+                let currentUser = new EpisodeClientTop();
                 currentUser.setAuthData(username, password);
+                
+                var tempData = currentUser.findTop();
+                console.log(tempData);
+                console.log("PointA");
 
                 //  createTableForTopEpisodes(currentUser.findTop());
             }
@@ -101,28 +95,37 @@
                             "authorization": "Basic " + btoa(this.username + ":" + this.password)
                         }
                     });
-                    //console.log("Point1");
-                    //console.log(response.json());
-                    //console.log("Point2");
-                    return await response.json();
-                }
-
-                async findTop() {
-                    let response = await fetch(this.url, {
-                        headers: {
-                            "accept": "application/json",
-                            //"content-type": "application/json", führt zu rejected statt pending beim promise
-                            "authorization": "Basic " + btoa(this.username + ":" + this.password)
-                        }
-                    });
-                    console.log(response);
-                    //console.log(JSON.parse(response.json()));
                     return await response.json();
                 }
             }
 
+           class EpisodeClientTop {
 
+                constructor(url) {
+                  
+                    this.url = url || "../api/scores";
+                    console.log(this.url);
+                    this.username = "";
+                    this.password = "";
+                }
 
+                setAuthData(username, password) {
+                    this.username = username;
+                    this.password = password;
+                }
+
+               async findTop() {
+                    console.log(this.url);
+                    let response = await fetch(this.url, {
+                        headers: {
+                            "accept": "application/json",
+                            "content-type": "application/json", 
+                            "authorization": "Basic " + btoa(this.username + ":" + this.password)
+                        }
+                    });
+                    return await response.json();
+                }
+                }
 
 
             function createTableForEpisodes(data) {
@@ -152,13 +155,36 @@
                     console.log(episode.name);
                 });
             }
+            
+            function fcAllEpisodes(data) {
+                data.then(function(value){
+                    
+                    for(let i=0;i<value.length;i++){
+                     let table = document.getElementById("tabelle");
+                    let tr = table.insertRow(1+i);
+                    let td1 = document.createElement("td");
+                    let td2 = document.createElement("td");
+                    let td3 = document.createElement("td");
+                    let td4 = document.createElement("td");
+                    let td5 = document.createElement("td");
+                    td1.innerHTML = '<input type="text"  value=' + value[i].series + '>';
+                    td2.innerHTML = '<input type="text"  value=' + value[i].season + '>';
+                    td3.innerHTML = '<input type="text"  value=' + value[i].name + '>';
+                    td4.innerHTML = '<input type="text"  value=' + value[i].number + '>';
+                    td5.innerHTML = '<input type="text"  value=' + value[i].avgRating + '>';
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    tr.appendChild(td5);
+                    }
+                    
+                });
+                
+            }
 
             function consoleLogger(data) {
                 data.then(function(value){
-                    console.log(value[0]);
-                    console.log(value[0].name);
-                    
-                    console.log(value.length);
                     
                     for(let i=0;i<value.length;i++){
                         console.log(value[i].name);

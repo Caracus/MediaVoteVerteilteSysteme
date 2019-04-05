@@ -28,7 +28,7 @@ import javax.persistence.Transient;
  * Eine zu erledigende Aufgabe.
  */
 @Entity
-public class Episode implements Serializable {
+public class Episode implements Serializable,Comparable<Episode> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -185,5 +185,10 @@ public class Episode implements Serializable {
     public void setSeason(String season) {
         this.season = season;
     }            
+
+    @Override
+    public int compareTo(Episode e) {
+        return Double.compare(this.avgRating, e.avgRating);
+    }
 
 }

@@ -19,6 +19,10 @@ public class EpisodeBean extends EntityBean<Episode, Long>{
                 .setParameter("series", "%" + series.toLowerCase() + "%")
                 .getResultList(); 
        }
+       
+        public List<Episode> findTopAsc() {
+           return em.createQuery("SELECT e FROM Episode e ORDER BY e.avgRating ASC")
+                .getResultList(); 
+    }
  
-   
 }

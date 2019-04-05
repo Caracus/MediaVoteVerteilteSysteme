@@ -21,9 +21,10 @@ td input{
 }
 
 td, th {
-    border: 2.5px solid #dddddd;
+    border: 2.5px solid;
     text-align: left;
-    padding: 4px;
+    padding: 1px;
+    border-block-color: black;
 }
 
 td:first-child, th:first-child{
@@ -35,7 +36,7 @@ td:last-child, th:last-child{
 }
 
 th{
-    background-color: white;
+    background-color: black;
 }
 
 button {
@@ -58,23 +59,26 @@ button {
     margin-left: auto;
     margin-right: auto;
     height:40px;
+    display: inline-block;
 }
 
 
 #loginDiv {
-    width: 500px;
+    width: 800px;
     margin-left: auto;
     margin-right: auto;
+    height:40px;
+    display: inline-block;
 }
 
 #loginDiv input{
-    width:120px;
-    height:20px;
+    cursor: pointer;
     float: left;
+    width:160px;
+    height:40px;
 }
 
-#loginDiv button{
-    width:120px;
-    height:20px;
-    float: left;
+.wrapper{
+    text-align: center;
 }
+
