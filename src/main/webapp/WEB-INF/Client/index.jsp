@@ -12,24 +12,30 @@
     <jsp:attribute name="head">
         <link rel="stylesheet" href="<c:url value="/css/style.css"/>" />
     </jsp:attribute>
+        
+    <jsp:attribute name="menu">    
+        
+        <div class="menuitem">
+            <a href="<c:url value="/app/start/"/>">Start</a>
+        </div>
+        
+    </jsp:attribute>
 
 
     <jsp:attribute name="content">
 
-
-        <h1>Rest Abfragen</h1>
         <div class="wrapper">
-        <div id="navigation">
-            <button id="allEpisodesButton" class="menuButton" >Alle Episoden</button>
-            <button id="top10Button" class="menuButton" >Deine Top 10</button>
+        <label id="loginDiv">
+            <input class="innerWrapper" type="text" id="usernameField" value="" placeholder="Benutzername">
+            <input class="innerWrapper" type="password" id="usernamePassword" value="" placeholder="Passwort">
+        </label>   
+        <label id="navigation">
+            <button id="allEpisodesButton" class="innerWrapper" >Alle Episoden</button>
+            <button id="top10Button" class="innerWrapper" >Deine Top 10</button>
+        </label>
         </div>
-        <br>
-            <div id="loginDiv">
-                <input class="loginFields" type="text" id="usernameField" value="" placeholder="Benutzername">
-                <input class="loginFields" type="text" id="usernamePassword" value="" placeholder="Passwort">
-            </div>
-        </div>
-
+       <h1>Rest Episodenliste</h1>
+       <br>
         <table id="tabelle">
             <tr>
                 <th>Serienname</th>
