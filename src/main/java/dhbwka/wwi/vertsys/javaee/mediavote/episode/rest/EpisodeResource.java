@@ -58,7 +58,8 @@ public class EpisodeResource {
                 avgScore = scoreSum / i;
             }
             ep.setAvgRating(avgScore);
-            
+            ep.setName(ep.getName().replace(" ","_"));
+            ep.setSeries(ep.getSeries().replace(" ","_"));
         });     
         //Collections.sort(episodes); Ruiniert die Liste
        String json = gson.toJson(episodes);
