@@ -57,6 +57,8 @@ public class ScoreResource {
             Score score = scores.get(i);
             score.setOperator(null);
             score.getEpisode().setUser(null);
+            score.getEpisode().setName(score.getEpisode().getName().replace(" ","_"));
+            score.getEpisode().setSeries(score.getEpisode().getSeries().replace(" ","_"));
             topScores.add(score);
         }
         
