@@ -10,7 +10,6 @@
 package dhbwka.wwi.vertsys.javaee.mediavote.common.jpa;
 
 import dhbwka.wwi.vertsys.javaee.mediavote.episode.web.EpisodeListServlet;
-import dhbwka.wwi.vertsys.javaee.mediavote.tasks.jpa.Task;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -79,9 +78,6 @@ public class User implements Serializable {
     @Column(name = "GROUPNAME")
     List<String> groups = new ArrayList<>();
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    List<Task> tasks = new ArrayList<>();
-
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public User() {
     }
@@ -110,14 +106,6 @@ public class User implements Serializable {
 
     public void setUsername(String id) {
         this.username = id;
-    }
-
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
     }
 
     public String getFirstName() {
