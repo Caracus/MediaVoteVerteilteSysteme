@@ -20,12 +20,12 @@
         <h1>Rest Abfragen</h1>
         <div class="wrapper">
         <div id="navigation">
-            <button id="allEpisodesButton" class="menuButton" >Rangliste</button>
+            <button id="allEpisodesButton" class="menuButton" >Alle Episoden</button>
             <button id="top10Button" class="menuButton" >Deine Top 10</button>
         </div>
         <br>
             <div id="loginDiv">
-                <input class="loginFields" type="text" id="usernameField" value="" placeholder="Username">
+                <input class="loginFields" type="text" id="usernameField" value="" placeholder="Benutzername">
                 <input class="loginFields" type="text" id="usernamePassword" value="" placeholder="Passwort">
             </div>
         </div>
@@ -66,10 +66,7 @@
                 currentUser.setAuthData(username, password);
                 
                 var tempData = currentUser.findTop();
-                console.log(tempData);
-                console.log("PointA");
-
-                //  createTableForTopEpisodes(currentUser.findTop());
+                fcTopEpisodes(tempData);
             }
 
             class EpisodeClient {
@@ -159,6 +156,10 @@
             function fcAllEpisodes(data) {
                 data.then(function(value){
                     
+                    for(var i= 0;document.getElementById("tabelle").rows.length-1;i++){
+                    document.getElementById("tabelle").deleteRow(1);
+                    }
+                    
                     for(let i=0;i<value.length;i++){
                      let table = document.getElementById("tabelle");
                     let tr = table.insertRow(1+i);
@@ -177,24 +178,57 @@
                     tr.appendChild(td3);
                     tr.appendChild(td4);
                     tr.appendChild(td5);
+                    }                   
+                });
+            }
+            
+                        function fcTopEpisodes(data) {
+                data.then(function(value){
+                    
+                    for(var i= 0;document.getElementById("tabelle").rows.length-1;i++){
+                    document.getElementById("tabelle").deleteRow(1);
                     }
                     
+                    for(let i=0;i<value.length;i++){
+                     let table = document.getElementById("tabelle");
+                    let tr = table.insertRow(1+i);
+                    let td1 = document.createElement("td");
+                    let td2 = document.createElement("td");
+                    let td3 = document.createElement("td");
+                    let td4 = document.createElement("td");
+                    let td5 = document.createElement("td");
+                    td1.innerHTML = '<input type="text"  value=' + value[i].episode.series + '>';
+                    td2.innerHTML = '<input type="text"  value=' + value[i].episode.season + '>';
+                    td3.innerHTML = '<input type="text"  value=' + value[i].episode.name + '>';
+                    td4.innerHTML = '<input type="text"  value=' + value[i].episode.number + '>';
+                    td5.innerHTML = '<input type="text"  value=' + value[i].rating + '>';
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    tr.appendChild(td5);
+                    }                   
                 });
-                
             }
 
+            /**
             function consoleLogger(data) {
                 data.then(function(value){
                     
                     for(let i=0;i<value.length;i++){
-                        console.log(value[i].name);
+                        console.log(value[i].episode.series);
+                        console.log(value[i].episode.season);
+                        console.log(value[i].episode.name);
+                        console.log(value[i].episode.number);
+                        console.log(value[i].rating);
                     }
-                    
                 });
                 
                 
                 console.log(data);
             }
+            */
+       
             
                 function createTableForTopEpisodes(data) {
 
