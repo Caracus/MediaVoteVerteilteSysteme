@@ -90,7 +90,12 @@
                          "authorization": "Basic " + btoa(this.username + ":" + this.password)
                      }
                  });
-                 return await response.json();
+                 try {
+                    return await response.json();
+                }
+                catch(e) {
+                 window.alert("Bitte gültige Anmeldedaten eintragen.");
+                }
              }
          }
          
@@ -118,7 +123,12 @@
                          "authorization": "Basic " + btoa(this.username + ":" + this.password)
                      }
                  });
-                 return await response.json();
+                 try {
+                    return await response.json();
+                } 
+                catch(e) {
+                 window.alert("Bitte gültige Anmeldedaten eintragen.");
+                 }
              }
              }
          
