@@ -78,6 +78,7 @@ public class EpisodeListServlet extends HttpServlet {
             double avgScore = 0.0;
             if(i > 0) {
                 avgScore = scoreSum / i;
+                avgScore = Math.round(avgScore*10.0)/10.0;
             }
             ep.setAvgRating(avgScore);
             

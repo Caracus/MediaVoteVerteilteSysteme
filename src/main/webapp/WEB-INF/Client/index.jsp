@@ -151,7 +151,7 @@
              });
          }
          
-                     function fcTopEpisodes(data) {
+        function fcTopEpisodes(data) {
              data.then(function(value){
                  
                  for(var i= 0;document.getElementById("tabelle").rows.length-1;i++){
@@ -179,6 +179,12 @@
                  }                   
              });
          }
+         
+            /**
+            function replaceUnderscores(stringy) {
+                return stringy.replace("_"," ");
+             } 
+             */
          
          window.addEventListener("load", () => {
              document.getElementById("allEpisodesButton").addEventListener("click", getAllEpisodes);

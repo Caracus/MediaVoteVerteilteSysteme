@@ -59,7 +59,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Ersteller</th>
+                            <th>Kurator</th>
                             <th>Serienname</th>
                             <th>Staffel</th>
                             <th>Episodenname</th>
@@ -95,8 +95,6 @@
                             <td>
                                 <c:out value="${responseListItem.episode.avgRating}"/>
                             </td>
-                                                          
-                               
                         </tr>
                     </c:forEach>
                 </table>

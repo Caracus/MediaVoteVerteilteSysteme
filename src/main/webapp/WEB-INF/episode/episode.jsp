@@ -48,7 +48,7 @@
                 <input type="hidden" name="episode_id" value="${episode.id}">
 
                 <%-- Eingabefelder --%>
-                <label for="episode_user">Ersteller:</label>
+                <label for="episode_user">Bearbeiter:</label>
                 <div class="side-by-side">
                     <input type="text" name="episode_user" value="${user.username}" readonly="readonly">
                 </div>
